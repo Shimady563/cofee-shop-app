@@ -9,16 +9,11 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <style>
-        .nav-link {
-          color: black;
-        }
-    </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand navbar-light" style="background-color: darkgray">
-    <a class="navbar-brand" href="#">Coffee Shop</a>
+<nav class="navbar navbar-expand navbar-light">
+    <h1 class="navbar-brand">Coffee Shop</h1>
     <div class="collapse navbar-collapse justify-content-center m-md-2" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
@@ -40,12 +35,15 @@
     </div>
 </nav>
 <div class="main-content">
-    <h1 style="text-align: center; margin: 10px">Menu</h1>
+    <h1 class="menu-title">Menu</h1>
     <div class="text-center">
         <a href="#">
-            <img src="img/coffee.webp" alt="cup" style="max-width: 100%; border-radius: 20px;">
+            <img class="img img-responsive menu-image" src="img/coffee.webp" alt="cup">
         </a>
     </div>
 </div>
 </body>
+<style>
+
+</style>
 </html>
