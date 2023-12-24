@@ -1,4 +1,4 @@
-package org.main;
+package project.coffeeshop;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
