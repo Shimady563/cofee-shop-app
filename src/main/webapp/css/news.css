@@ -1,3 +1,43 @@
-.news-block {
-  margin-bottom: 20px;
+.navbar {
+    background-color: black;
 }
+
+.navbar-brand {
+    color: white;
+    margin: 7px 0;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus {
+    color: whitesmoke;
+}
+
+.btn,
+.btn:hover,
+.btn:focus {
+    background-color: white;
+    border: none;
+    color: black;
+}
+
+.news-block {
+    margin-bottom: 20px;
+}
+
+.news-block,
+.news-block:hover {
+    text-decoration: none;
+    color: black
+}
+
+.news-block img {
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.news-block p {
+    font-size: 18px;
+    margin: 0 10px;
+    font-weight: 600;
+}
+
