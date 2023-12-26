@@ -1,0 +1,14 @@
+.news-container {
+  max-width: 800px;
+  margin: 50px auto auto;
+}
+
+.news-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.news-content {
+  text-align: justify;
+}

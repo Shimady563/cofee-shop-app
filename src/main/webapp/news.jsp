@@ -18,7 +18,7 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-4">
-            <a href="#" class="news-block">
+            <a href="piece-of-news.jsp" class="news-block">
                 <img src="img/coffee.webp" alt="News 1" class="img-fluid">
                 <p>Long title for line wrap test and many other meaningless words</p>
             </a>
