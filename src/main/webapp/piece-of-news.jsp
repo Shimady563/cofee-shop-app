@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="css/piece-of-news.css">
 </head>
 <body>
+<nav class="navbar">
+    <h1><a class="navbar-brand" href="index.jsp">Coffee Shop</a></h1>
+</nav>
 <div class="container news-container">
     <div class="row">
         <div class="col-12">

@@ -1,3 +1,17 @@
+.navbar {
+  background-color: black;
+}
+
+.navbar-brand {
+  color: white;
+  margin: 7px 0;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus {
+  color: whitesmoke;
+}
+
 .news-container {
   max-width: 800px;
   margin: 50px auto auto;
@@ -7,6 +21,7 @@
   max-width: 100%;
   height: auto;
   margin-bottom: 20px;
+  border-radius: 10px;
 }
 
 .news-content {
