@@ -1,0 +1,31 @@
+.navbar {
+  background-color: black;
+}
+
+.navbar-brand {
+  color: white;
+  margin: 7px 0;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus {
+  color: whitesmoke;
+}
+
+.menu-container {
+  max-width: 800px;
+  margin: 50px auto auto;
+}
+
+.menu-item {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+.item-image {
+  border-radius: 5px;
+  max-width: 100%;
+  height: auto;
+}
