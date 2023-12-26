@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Sign In</title>
+    <title>Sign Up</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+
 <div class="container mt-5 w-50">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <h2 class="text-center mb-4">Sign In</h2>
+            <h2 class="text-center mb-4">Sign Up</h2>
             <form action="" method="post">
                 <div class="form-group">
                     <label for="username">Username:</label>
@@ -20,15 +21,18 @@
                     <label for="password">Password:</label>
                     <input type="password" class="form-control" id="password" name="password" required>
                 </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                </div>
                 <!-- Element for error messages-->
                 <p style="color: red; font-size: 12px; margin: 0">
                 </p>
-                <button type="submit" class="btn btn-primary btn-block" style="background-color: black; border-color: black">Sign In</button>
+                <button type="submit" class="btn btn-primary btn-block" style="background-color: black; border-color: black">Sign Up</button>
             </form>
-            <p class="mt-3 text-center">Don't have an account? <a href="sign-up.jsp">Sign Up</a></p>
+            <p class="mt-3 text-center">Already have an account? <a href="sign-in.jsp">Sign In</a></p>
         </div>
     </div>
 </div>
 </body>
 </html>
-
