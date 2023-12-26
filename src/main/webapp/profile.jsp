@@ -15,7 +15,7 @@
             <ul class="list-group">
                 <li class="list-group-item"><a href="index.jsp">Home</a></li>
                 <li class="list-group-item"><a href="#">Favorite</a></li>
-                <li class="list-group-item"><a href="#">News</a></li>
+                <li class="list-group-item"><a href="#">Menu</a></li>
                 <li class="list-group-item"><a href="#">Cart</a></li>
             </ul>
         </div>

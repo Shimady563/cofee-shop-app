@@ -14,16 +14,13 @@
     <div class="collapse navbar-collapse justify-content-center m-md-2" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="index.jsp">Home</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="profile.jsp">Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">News</a>
+                <a class="nav-link" href="#">Menu</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"></a>
+                <a class="nav-link" href="news.jsp">News</a>
             </li>
         </ul>
     </div>
