@@ -13,8 +13,7 @@
 }
 
 .menu-container {
-  max-width: 800px;
-  margin: 50px auto auto;
+  margin-top: 30px;
 }
 
 .menu-item {
@@ -28,4 +27,37 @@
   border-radius: 5px;
   max-width: 100%;
   height: auto;
+}
+
+.item-name {
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-bottom: 30px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.item-cost {
+  position: absolute;
+  bottom: 60px;
+  left: 30px;
+}
+
+.item-volume {
+  position: absolute;
+  bottom: 60px;
+  right: 30px;
+}
+
+.btn,
+.btn:hover,
+.btn:focus,
+.btn:active {
+  background-color: black !important;
+  border: none !important;
+  color: white !important;
+}
+
+.item-add {
+  margin-top: 30px;
 }
