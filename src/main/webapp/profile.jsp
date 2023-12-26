@@ -14,7 +14,7 @@
             <p><strong>User Points:</strong> 1000</p>
             <ul class="list-group">
                 <li class="list-group-item"><a href="index.jsp">Home</a></li>
-                <li class="list-group-item"><a href="#">Favorite</a></li>
+                <li class="list-group-item"><a href="favorites.jsp">Favorites</a></li>
                 <li class="list-group-item"><a href="menu.jsp">Menu</a></li>
             </ul>
         </div>

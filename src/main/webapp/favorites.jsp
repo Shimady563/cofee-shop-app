@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Menu</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/favorites.css">
 </head>
 <body>
 <nav class="navbar">
@@ -19,7 +19,6 @@
                 <p class="item-name">Cappuccino</p>
                 <p class="item-volume"> 200ml</p>
                 <p class="item-cost"> $5.99</p>
-                <button class="btn btn-primary item-add">Add to favorites</button>
             </div>
         </div>
         <div class="col-3">
@@ -28,7 +27,6 @@
                 <p class="item-name">Cappuccino</p>
                 <p class="item-volume"> 300ml</p>
                 <p class="item-cost"> $8.99</p>
-                <button class="btn btn-primary item-add">Add to favorites</button>
             </div>
         </div>
         <div class="col-3">
@@ -37,7 +35,6 @@
                 <p class="item-name">Cappuccino</p>
                 <p class="item-volume"> 400ml</p>
                 <p class="item-cost"> $12.99</p>
-                <button class="btn btn-primary item-add">Add to favorites</button>
             </div>
         </div>
         <div class="col-3">
@@ -46,7 +43,6 @@
                 <p class="item-name">Cappuccino</p>
                 <p class="item-volume"> 500ml</p>
                 <p class="item-cost"> $15.99</p>
-                <button class="btn btn-primary item-add">Add to favorites</button>
             </div>
         </div>
     </div>

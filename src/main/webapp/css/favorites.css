@@ -1,0 +1,50 @@
+.navbar {
+    background-color: black;
+}
+
+.navbar-brand {
+    color: white;
+    margin: 7px 0;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus {
+    color: whitesmoke;
+}
+
+.menu-container {
+    margin-top: 30px;
+}
+
+.menu-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+.item-image {
+    border-radius: 5px;
+    max-width: 100%;
+    height: auto;
+}
+
+.item-name {
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-bottom: 30px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.item-cost {
+    position: absolute;
+    bottom: 10px;
+    left: 30px;
+}
+
+.item-volume {
+    position: absolute;
+    bottom: 10px;
+    right: 30px;
+}
