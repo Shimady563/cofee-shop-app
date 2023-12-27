@@ -11,6 +11,10 @@
     color: #c2c2c2;
 }
 
+.navbar-brand {
+    color: white;
+}
+
 .menu-title {
     text-align: center;
     margin: 10px;
