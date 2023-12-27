@@ -1,2 +1,2 @@
 # cofee-shop-app
-A web application of an imaginary cofee shop
+A web application of an imaginary coffee shop
