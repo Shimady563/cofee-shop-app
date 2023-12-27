@@ -5,15 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Profile</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/profile.css">
 </head>
 <body>
+<nav class="navbar">
+    <a href="index.jsp"><h1 class="navbar-brand">Coffee Shop</h1></a>
+    <div class="navbar-nav ml-auto">
+        <a class="nav-item nav-link" href="">Sign Out</a>
+    </div>
+</nav>
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-4">
             <h2>Profile</h2>
-            <p><strong>User Points:</strong> 1000</p>
             <ul class="list-group">
-                <li class="list-group-item"><a href="index.jsp">Home</a></li>
+                <li class="list-group-item"><a href="news.jsp">News</a></li>
                 <li class="list-group-item"><a href="favorites.jsp">Favorites</a></li>
                 <li class="list-group-item"><a href="menu.jsp">Menu</a></li>
             </ul>

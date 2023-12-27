@@ -9,15 +9,15 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand navbar-light">
+<nav class="navbar navbar-expand">
     <h1 class="navbar-brand">Coffee Shop</h1>
-    <div class="collapse navbar-collapse justify-content-center m-md-2" id="navbarNav">
+    <div class="navbar-collapse justify-content-center m-md-2" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" href="profile.jsp">Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="menu.jsp">Menu</a>
+                <a class="nav-link" href="favorites.jsp">Favorites</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="news.jsp">News</a>
@@ -31,7 +31,7 @@
 <div class="main-content">
     <h1 class="menu-title">Menu</h1>
     <div class="text-center">
-        <a href="#">
+        <a href="menu.jsp">
             <img class="img img-responsive menu-image" src="img/coffee.webp" alt="cup">
         </a>
     </div>
