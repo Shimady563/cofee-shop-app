@@ -1,4 +1,4 @@
-package project.coffeeshop.authentication.model;
+package project.coffeeshop.authentication;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,11 +11,11 @@ import lombok.ToString;
 @ToString
 public class User {
     private long id;
-    private String userName;
+    private String username;
     private String password;
 
-    public User(String userName, String password) {
-        this.userName = userName;
+    public User(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 }

@@ -1,4 +1,4 @@
-package project.coffeeshop.authentication.model;
+package project.coffeeshop.authentication;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
