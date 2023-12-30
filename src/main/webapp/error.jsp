@@ -22,8 +22,8 @@
 <body>
 <div class="container error-container">
     <div>
-        <h2 class="error-message">Error on the server occurred.</h2>
-        <p>Redirecting to the previous page...</p>
+        <h2 class="error-message">Error on the server occurred</h2>
+        <a href="redirect"><button class="btn btn-primary">Go back</button></a>
     </div>
 </div>
 </body>

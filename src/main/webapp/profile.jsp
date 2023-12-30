@@ -9,7 +9,7 @@
 </head>
 <body>
 <nav class="navbar">
-    <a href="index.jsp"><h1 class="navbar-brand">Coffee Shop</h1></a>
+    <a href="home"><h1 class="navbar-brand">Coffee Shop</h1></a>
     <div class="navbar-nav ml-auto">
         <a class="nav-item nav-link" href="">Sign Out</a>
     </div>
@@ -26,7 +26,7 @@
         </div>
         <div class="col-md-8">
             <h2>Change Username/Password</h2>
-            <form action="" method="post">
+            <form action="profile" method="post">
                 <div class="form-group">
                     <label for="newLogin">Username:</label>
                     <input type="text" class="form-control" id="newLogin" name="newLogin" required>

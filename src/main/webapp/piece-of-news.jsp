@@ -9,7 +9,7 @@
 </head>
 <body>
 <nav class="navbar">
-    <h1><a class="navbar-brand" href="index.jsp">Coffee Shop</a></h1>
+    <h1><a class="navbar-brand" href="home">Coffee Shop</a></h1>
 </nav>
 <div class="container news-container">
     <div class="row">

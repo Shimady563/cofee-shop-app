@@ -9,8 +9,8 @@
 </head>
 <body>
 <nav class="navbar">
-    <h1><a class="navbar-brand" href="index.jsp">Coffee Shop</a></h1>
-    <form class="form-inline my-2 my-lg-0 ml-auto" action="" method="post">
+    <h1><a class="navbar-brand" href="home">Coffee Shop</a></h1>
+    <form class="form-inline my-2 my-lg-0 ml-auto" action="news" method="post">
         <input class="form-control mr-2" type="search" placeholder="Enter news title" aria-label="Search">
         <button class="btn btn-outline-success my-2" type="submit">Search</button>
     </form>

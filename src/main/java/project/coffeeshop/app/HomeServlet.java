@@ -1,7 +1,8 @@
-package project.coffeeshop;
+package project.coffeeshop.app;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -14,13 +15,15 @@ import project.coffeeshop.commons.CoffeeShopServlet;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.UUID;
 
-@WebServlet(name = "HomeServlet", value = "")
+@WebServlet(name = "HomeServlet", value = {"", "/home"})
 public class HomeServlet extends CoffeeShopServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect(request.getContextPath() + "/index.jsp");
+        Arrays.stream(request.getCookies()).map(Cookie::getName).forEach(System.out::println);
+        getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
     }
 }

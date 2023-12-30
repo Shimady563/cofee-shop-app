@@ -8,11 +8,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import project.coffeeshop.commons.CoffeeShopServlet;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
+import java.time.LocalDateTime;;
 import java.util.Optional;
 import java.util.UUID;
 
-@WebFilter(filterName = "AuthFilter", servletNames = {"SignIn"})
+@WebFilter(filterName = "AuthFilter", servletNames = {"SignInServlet", "SignUpServlet"})
 public class AuthenticationFilter implements Filter {
     private final SessionDao sessionDao = new SessionDao();
 
@@ -36,10 +36,12 @@ public class AuthenticationFilter implements Filter {
                     return;
                 }
             } catch (ServletException e) {
+                request.setAttribute("path", CoffeeShopServlet.parsePath(request.getHeader("referer")));
                 response.sendRedirect(request.getContextPath() + "/error");
             }
         }
 
+        request.setAttribute("path", CoffeeShopServlet.parsePath(request.getHeader("referer")));
         filterChain.doFilter(servletRequest, servletResponse);
     }
 }

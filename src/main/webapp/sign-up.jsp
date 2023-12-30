@@ -33,7 +33,7 @@
                 </p>
                 <button type="submit" class="btn btn-primary btn-block" style="background-color: black; border-color: black">Sign Up</button>
             </form>
-            <p class="mt-3 text-center">Already have an account? <a href="sign-in.jsp">Sign In</a></p>
+            <p class="mt-3 text-center">Already have an account? <a href="sign-in">Sign In</a></p>
         </div>
     </div>
 </div>

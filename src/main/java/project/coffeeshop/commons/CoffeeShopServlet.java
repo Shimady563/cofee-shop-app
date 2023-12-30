@@ -16,12 +16,13 @@ import java.util.Optional;
 public abstract class CoffeeShopServlet extends HttpServlet {
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
-            super.service(req, resp);
+            super.service(request, response);
         } catch (ServletException e) {
             System.out.println(e.getMessage());
-            resp.sendRedirect(req.getContextPath() + "/error");
+            request.setAttribute("path", CoffeeShopServlet.parsePath(request.getHeader("referer")));
+            response.sendRedirect(request.getContextPath() + "/error");
         }
     }
 
@@ -33,5 +34,9 @@ public abstract class CoffeeShopServlet extends HttpServlet {
 
     public static boolean isValidSession(Session session, LocalDateTime now) {
         return session.getExpirationTime().isAfter(now);
+    }
+
+    public static String parsePath(String fullPath) {
+        return fullPath.substring(fullPath.lastIndexOf('/'));
     }
 }

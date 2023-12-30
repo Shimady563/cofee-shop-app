@@ -14,7 +14,7 @@
     <div class="navbar-collapse justify-content-center m-md-2" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="profile.jsp">Profile</a>
+                <a class="nav-link" href="profile">Profile</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="favorites.jsp">Favorites</a>
@@ -25,7 +25,7 @@
         </ul>
     </div>
     <div class="navbar-nav ml-auto">
-        <a class="nav-item nav-link" href="sign-in.jsp">Sign In</a>
+        <a class="nav-item nav-link" href="sign-in">Sign In</a>
     </div>
 </nav>
 <div class="main-content">
