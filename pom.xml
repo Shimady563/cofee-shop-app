@@ -34,6 +34,11 @@
             <version>1.18.30</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.lambdaworks</groupId>
+            <artifactId>scrypt</artifactId>
+            <version>1.4.0</version>
+        </dependency>
     </dependencies>
     
 </project>

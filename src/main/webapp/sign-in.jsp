@@ -11,7 +11,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <h2 class="text-center mb-4">Sign In</h2>
-            <form action="" method="post">
+            <form action="sign-in" method="post">
                 <div class="form-group">
                     <label for="username">Username:</label>
                     <input type="text" class="form-control" id="username" name="username" required>
@@ -22,6 +22,9 @@
                 </div>
                 <!-- Element for error messages-->
                 <p style="color: red; font-size: 12px; margin: 0">
+                    <%=
+                    request.getAttribute("message") == null ? "" : request.getAttribute("message")
+                    %>
                 </p>
                 <button type="submit" class="btn btn-primary btn-block" style="background-color: black; border-color: black">Sign In</button>
             </form>
