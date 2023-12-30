@@ -23,7 +23,6 @@ public class HomeServlet extends CoffeeShopServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Arrays.stream(request.getCookies()).map(Cookie::getName).forEach(System.out::println);
         getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
     }
 }
