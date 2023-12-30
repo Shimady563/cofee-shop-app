@@ -32,7 +32,7 @@ public class SessionDao {
             preparedStatement.setObject(1, session.getId());
             preparedStatement.setLong(2, session.getUserId());
             preparedStatement.setTimestamp(3, Timestamp.valueOf(session.getExpirationTime()));
-            preparedStatement.executeQuery();
+            preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
             throw new ServletException(e);

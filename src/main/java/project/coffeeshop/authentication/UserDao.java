@@ -25,16 +25,23 @@ public class UserDao {
         }
     }
 
-    public void save(User user) throws ServletException {
+    public long save(User user) throws ServletException {
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection
-                     .prepareStatement("insert into public.\"user\" values (?, ?, ?)")) {
-            System.out.println("insert into public.\"user\" values (?, ?, ?)");
+                     .prepareStatement("insert into public.\"user\" (username, password) values (?, ?)",
+                             PreparedStatement.RETURN_GENERATED_KEYS)) {
 
-            preparedStatement.setLong(1, user.getId());
-            preparedStatement.setString(2, user.getUsername());
-            preparedStatement.setString(3, user.getPassword());
-            preparedStatement.executeQuery();
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.executeUpdate();
+
+            long generatedId = -1;
+            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+               generatedId = generatedKeys.getLong(1);
+            }
+
+            return generatedId;
 
         } catch (SQLException e) {
             throw new ServletException(e);
@@ -42,9 +49,9 @@ public class UserDao {
     }
 
     public Optional<User> findByUsername(String username) throws ServletException {
-        try ( Connection connection = dataSource.getConnection();
-              PreparedStatement preparedStatement = connection
-                      .prepareStatement("select * from public.\"user\" where username = ?")) {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection
+                     .prepareStatement("select * from public.\"user\" where username = ?")) {
 
             preparedStatement.setString(1, username);
             preparedStatement.executeQuery();
