@@ -13,6 +13,7 @@
         height: 100vh;
         text-align: center;
       }
+
       .error-message {
         font-size: 18px;
         margin-bottom: 20px;
@@ -23,7 +24,9 @@
 <div class="container error-container">
     <div>
         <h2 class="error-message">Error on the server occurred</h2>
-        <a href="redirect"><button class="btn btn-primary">Go back</button></a>
+        <a href="redirect">
+            <button class="btn btn-primary">Go back</button>
+        </a>
     </div>
 </div>
 </body>

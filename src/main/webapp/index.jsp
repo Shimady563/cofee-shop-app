@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-
 <nav class="navbar navbar-expand">
     <h1 class="navbar-brand">Coffee Shop</h1>
     <div class="navbar-collapse justify-content-center m-md-2" id="navbarNav">
@@ -37,7 +36,4 @@
     </div>
 </div>
 </body>
-<style>
-
-</style>
 </html>

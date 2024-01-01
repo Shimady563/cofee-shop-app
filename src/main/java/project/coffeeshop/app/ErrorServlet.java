@@ -7,7 +7,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import project.coffeeshop.commons.CoffeeShopServlet;
 
 import java.io.IOException;
-import java.util.Optional;
 
 @WebServlet(name = "ErrorServlet", value = "/error")
 public class ErrorServlet extends CoffeeShopServlet {

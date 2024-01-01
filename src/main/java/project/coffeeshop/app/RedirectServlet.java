@@ -1,6 +1,5 @@
 package project.coffeeshop.app;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -13,7 +12,7 @@ import java.util.Optional;
 public class RedirectServlet extends CoffeeShopServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Optional<String> path = Optional.ofNullable((String) request.getAttribute("path"));
         response.sendRedirect(request.getContextPath() + path.orElse("/"));
     }

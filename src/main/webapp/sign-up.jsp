@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-
 <div class="container mt-5 w-50">
     <div class="row justify-content-center">
         <div class="col-md-6">
@@ -29,7 +28,9 @@
                 <p style="color: red; font-size: 12px; margin: 0">
                     ${message}
                 </p>
-                <button type="submit" class="btn btn-primary btn-block" style="background-color: black; border-color: black">Sign Up</button>
+                <button type="submit" class="btn btn-primary btn-block"
+                        style="background-color: black; border-color: black">Sign Up
+                </button>
             </form>
             <p class="mt-3 text-center">Already have an account? <a href="sign-in">Sign In</a></p>
         </div>

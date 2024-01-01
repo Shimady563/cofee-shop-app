@@ -24,7 +24,9 @@
                 <p style="color: red; font-size: 12px; margin: 0">
                     ${message}
                 </p>
-                <button type="submit" class="btn btn-primary btn-block" style="background-color: black; border-color: black">Sign In</button>
+                <button type="submit" class="btn btn-primary btn-block"
+                        style="background-color: black; border-color: black">Sign In
+                </button>
             </form>
             <p class="mt-3 text-center">Don't have an account? <a href="sign-up">Sign Up</a></p>
         </div>
