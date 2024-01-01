@@ -24,7 +24,12 @@
         </ul>
     </div>
     <div class="navbar-nav ml-auto">
-        <a class="nav-item nav-link" href="sign-in">Sign In</a>
+        <!--I had to make this... mess because for some reason I could not include jstl into my project properly-->
+        <div class="nav-item nav-link">
+            <span>${username}</span>
+        ${auth ? "<img src=\"img/coffee-cup.svg\" alt=\"Profile Icon\" style=\"width: 30px; height: 30px; border-radius: 50%;\">" :
+                "<a class=\"nav-item nav-link\" href=\"sign-in\">Sign In</a>"}
+        </div>
     </div>
 </nav>
 <div class="main-content">
