@@ -11,7 +11,7 @@
 <nav class="navbar">
     <a href="home"><h1 class="navbar-brand">Coffee Shop</h1></a>
     <div class="navbar-nav ml-auto">
-        <a class="nav-item nav-link" href="">Sign Out</a>
+        <a class="nav-item nav-link" href="sign-out">Sign Out</a>
     </div>
 </nav>
 <div class="container mt-5">

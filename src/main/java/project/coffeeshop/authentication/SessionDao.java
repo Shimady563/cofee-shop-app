@@ -64,6 +64,19 @@ public class SessionDao {
         }
     }
 
+    public void delete(UUID sessionId) throws ServletException {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection
+                     .prepareStatement("delete from public.session where id = ?")) {
+
+            preparedStatement.setObject(1, sessionId);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new ServletException(e);
+        }
+    }
+
     public void deleteExpiredSessions(LocalDateTime now) throws ServletException {
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection
