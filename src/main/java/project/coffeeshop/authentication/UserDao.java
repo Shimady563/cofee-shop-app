@@ -55,21 +55,55 @@ public class UserDao {
 
             preparedStatement.setString(1, username);
             preparedStatement.executeQuery();
-            ResultSet resultSet = preparedStatement.getResultSet();
 
-            User user = null;
-            while (resultSet.next()) {
-                long id = resultSet.getLong(1);
-                String userName = resultSet.getString(2);
-                String password = resultSet.getString(3);
-                user = new User(id, userName, password);
-            }
-
-            resultSet.close();
-
-            return Optional.ofNullable(user);
+            return getUser(preparedStatement.getResultSet());
         } catch (SQLException e) {
             throw new ServletException(e);
         }
+    }
+
+    public Optional<User> findById(Long id) throws ServletException {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection
+                     .prepareStatement("select id, username, password from public.\"user\" where id = ?")) {
+
+            preparedStatement.setLong(1, id);
+            preparedStatement.executeQuery();
+
+            return getUser(preparedStatement.getResultSet());
+        } catch (SQLException e) {
+            throw new ServletException(e);
+        }
+    }
+
+    public void update(User user) throws ServletException {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection
+                     .prepareStatement("update public.\"user\" " +
+                             "set username = ?, password = ? " +
+                             "where id = ?")) {
+
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setLong(3, user.getId());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new ServletException(e);
+        }
+    }
+
+    private Optional<User> getUser(ResultSet resultSet) throws SQLException {
+        User user = null;
+        while (resultSet.next()) {
+            long userId = resultSet.getLong(1);
+            String username = resultSet.getString(2);
+            String password = resultSet.getString(3);
+            user = new User(userId, username, password);
+        }
+
+        resultSet.close();
+
+        return Optional.ofNullable(user);
     }
 }
