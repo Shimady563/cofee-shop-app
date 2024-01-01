@@ -13,6 +13,7 @@ import project.coffeeshop.authentication.UserDao;
 import project.coffeeshop.commons.CoffeeShopServlet;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -34,9 +35,8 @@ public class ProfileServlet extends CoffeeShopServlet {
 
             Optional<Session> sessionOptional = sessionDao.findById(sessionId);
 
-            if (sessionOptional.isPresent()) {
+            if (sessionOptional.isPresent() && isValidSession(sessionOptional.get(), LocalDateTime.now())) {
                 Optional<User> userOptional = userDao.findById(sessionOptional.get().getUserId());
-
                 userOptional.ifPresent(user -> request.setAttribute("username", user.getUsername()));
             }
         }
@@ -57,7 +57,7 @@ public class ProfileServlet extends CoffeeShopServlet {
 
             Optional<Session> sessionOptional = sessionDao.findById(sessionId);
 
-            if (sessionOptional.isPresent()) {
+            if (sessionOptional.isPresent() && isValidSession(sessionOptional.get(), LocalDateTime.now())) {
                 Optional<User> userOptional = userDao.findById(sessionOptional.get().getUserId());
 
                 if (userOptional.isPresent()) {
