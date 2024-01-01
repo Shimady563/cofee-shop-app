@@ -27,9 +27,7 @@
                 </div>
                 <!-- Element for error messages-->
                 <p style="color: red; font-size: 12px; margin: 0">
-                    <%=
-                    request.getAttribute("message") == null ? "" : request.getAttribute("message")
-                    %>
+                    ${message}
                 </p>
                 <button type="submit" class="btn btn-primary btn-block" style="background-color: black; border-color: black">Sign Up</button>
             </form>
