@@ -27,7 +27,7 @@ public class SessionDao {
     public void save(Session session) throws ServletException {
         try (Connection connection = dataSource.getConnection();
         PreparedStatement preparedStatement = connection
-                .prepareStatement("insert into public.session values (?, ?, ?)")) {
+                .prepareStatement("insert into public.session (id, user_id, expiration_time) values (?, ?, ?)")) {
 
             preparedStatement.setObject(1, session.getId());
             preparedStatement.setLong(2, session.getUserId());
@@ -42,7 +42,7 @@ public class SessionDao {
     public Optional<Session> findById(UUID sessionId) throws ServletException {
         try (Connection connection = dataSource.getConnection();
         PreparedStatement preparedStatement = connection
-                .prepareStatement("select * from public.session where id = ?")) {
+                .prepareStatement("select id, user_id, expiration_time from public.session where id = ?")) {
 
             preparedStatement.setObject(1, sessionId);
 

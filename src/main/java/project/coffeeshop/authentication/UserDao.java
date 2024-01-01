@@ -51,7 +51,7 @@ public class UserDao {
     public Optional<User> findByUsername(String username) throws ServletException {
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection
-                     .prepareStatement("select * from public.\"user\" where username = ?")) {
+                     .prepareStatement("select id, username, password from public.\"user\" where username = ?")) {
 
             preparedStatement.setString(1, username);
             preparedStatement.executeQuery();
