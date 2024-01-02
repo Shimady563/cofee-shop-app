@@ -41,7 +41,6 @@ public class AuthenticationFilter implements Filter {
             }
         }
 
-        request.setAttribute("path", CoffeeShopServlet.parsePath(request.getHeader("referer")));
         filterChain.doFilter(servletRequest, servletResponse);
     }
 }

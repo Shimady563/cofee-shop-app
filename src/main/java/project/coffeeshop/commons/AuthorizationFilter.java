@@ -32,7 +32,6 @@ public class AuthorizationFilter implements Filter {
                 Optional<Session> sessionOptional = sessionDao.findById(UUID.fromString(cookieOptional.get().getValue()));
 
                 if (sessionOptional.isPresent() && CoffeeShopServlet.isValidSession(sessionOptional.get(), LocalDateTime.now())) {
-                    request.setAttribute("path", CoffeeShopServlet.parsePath(request.getHeader("referer")));
                     filterChain.doFilter(servletRequest, servletResponse);
                     return;
                 }
@@ -42,7 +41,7 @@ public class AuthorizationFilter implements Filter {
             }
         }
 
-        request.setAttribute("path", CoffeeShopServlet.parsePath(request.getHeader("referer")));
+        request.setAttribute("path", CoffeeShopServlet.parsePath(request.getRequestURI()));
         response.sendRedirect(request.getContextPath() + "/sign-in");
      }
 }
