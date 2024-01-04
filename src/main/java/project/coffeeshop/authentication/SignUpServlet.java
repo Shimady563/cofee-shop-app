@@ -23,7 +23,7 @@ public class SignUpServlet extends CoffeeShopServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/sign-up.jsp").forward(request, response);
+        templateEngine.process("sign-up", webContext, response.getWriter());
     }
 
     @Override
@@ -36,13 +36,13 @@ public class SignUpServlet extends CoffeeShopServlet {
 
         if (userOptional.isPresent()) {
             request.setAttribute("message", "User already exists");
-            getServletContext().getRequestDispatcher("/sign-up.jsp").forward(request, response);
+            templateEngine.process("sign-up", webContext, response.getWriter());
             return;
         }
 
         if (!password.equals(confirmPassword)) {
             request.setAttribute("message", "Password mismatch");
-            getServletContext().getRequestDispatcher("/sign-up.jsp").forward(request, response);
+            templateEngine.process("sign-up", webContext, response.getWriter());
             return;
         }
 

@@ -23,7 +23,7 @@ public class SignInServlet extends CoffeeShopServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/sign-in.jsp").forward(request, response);
+        templateEngine.process("sign-in", webContext, response.getWriter());
     }
 
     @Override
@@ -34,8 +34,8 @@ public class SignInServlet extends CoffeeShopServlet {
         Optional<User> userOptional = userDao.findByUsername(username);
 
         if (userOptional.isEmpty()) {
-            request.setAttribute("message", "User not found");
-            getServletContext().getRequestDispatcher("/sign-in.jsp").forward(request, response);
+            webContext.setVariable("message", "User not found");
+            templateEngine.process("sign-in", webContext, response.getWriter());
             return;
         }
 
@@ -43,7 +43,7 @@ public class SignInServlet extends CoffeeShopServlet {
 
         if (!SCryptUtil.check(password, user.getPassword())) {
             request.setAttribute("message", "Wrong password");
-            getServletContext().getRequestDispatcher("/sign-in.jsp").forward(request, response);
+            templateEngine.process("sign-in", webContext, response.getWriter());
             return;
         }
 

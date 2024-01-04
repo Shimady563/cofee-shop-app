@@ -37,7 +37,7 @@ public class ProfileServlet extends CoffeeShopServlet {
             }
         }
 
-        getServletContext().getRequestDispatcher("/profile.jsp").forward(request, response);
+        templateEngine.process("profile", webContext, response.getWriter());
     }
 
     @Override

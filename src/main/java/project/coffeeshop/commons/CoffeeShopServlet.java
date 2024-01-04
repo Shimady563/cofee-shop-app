@@ -1,7 +1,6 @@
 package project.coffeeshop.commons;
 
 import jakarta.servlet.ServletConfig;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 
 import jakarta.servlet.http.Cookie;
@@ -9,9 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.thymeleaf.ITemplateEngine;
-import org.thymeleaf.Thymeleaf;
 import org.thymeleaf.context.WebContext;
-import org.thymeleaf.web.servlet.JakartaServletWebApplication;
 import project.coffeeshop.authentication.Session;
 
 import java.io.IOException;

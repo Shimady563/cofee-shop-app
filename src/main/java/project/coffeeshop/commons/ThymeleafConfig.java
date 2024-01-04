@@ -23,6 +23,7 @@ public class ThymeleafConfig {
         WebApplicationTemplateResolver templateResolver = new WebApplicationTemplateResolver(application);
         templateResolver.setTemplateMode(TemplateMode.HTML);
         templateResolver.setPrefix("");
+        templateResolver.setSuffix(".html");
         return templateResolver;
     }
 

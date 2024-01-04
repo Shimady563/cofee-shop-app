@@ -8,6 +8,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import project.coffeeshop.authentication.Session;
 import project.coffeeshop.authentication.SessionDao;
+import project.coffeeshop.authentication.User;
+import project.coffeeshop.authentication.UserDao;
 import project.coffeeshop.commons.CoffeeShopServlet;
 
 import java.io.IOException;
@@ -18,6 +20,7 @@ import java.util.UUID;
 @WebServlet(name = "HomeServlet", value = {"", "/home"})
 public class HomeServlet extends CoffeeShopServlet {
     private final SessionDao sessionDao = new SessionDao();
+    private final UserDao userDao = new UserDao();
 
     public HomeServlet() throws ServletException {
     }
@@ -32,9 +35,12 @@ public class HomeServlet extends CoffeeShopServlet {
 
             if (sessionOptional.isPresent() && CoffeeShopServlet.isValidSession(sessionOptional.get(), LocalDateTime.now())) {
                 request.setAttribute("auth", true);
+
+                Optional<User> userOptional = userDao.findById(sessionOptional.get().getUserId());
+                userOptional.ifPresent((user -> request.setAttribute("username", user.getUsername())));
             }
         }
 
-        getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+        templateEngine.process("index", webContext, response.getWriter());
     }
 }

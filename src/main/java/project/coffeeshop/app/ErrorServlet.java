@@ -1,6 +1,5 @@
 package project.coffeeshop.app;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -12,7 +11,7 @@ import java.io.IOException;
 public class ErrorServlet extends CoffeeShopServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/error.jsp").forward(request ,response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        templateEngine.process("error", webContext, response.getWriter());
     }
 }
