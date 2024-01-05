@@ -4,8 +4,6 @@ import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebListener;
-import project.coffeeshop.app.HomeServlet;
-import project.coffeeshop.commons.CoffeeShopServlet;
 
 import java.time.LocalDateTime;
 import java.util.Timer;

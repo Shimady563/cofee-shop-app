@@ -1,5 +1,6 @@
 package project.coffeeshop.authentication;
 
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
@@ -11,11 +12,16 @@ import java.io.IOException;
 import java.util.Optional;
 import java.util.UUID;
 
+import static project.coffeeshop.commons.ServletUtil.findCookieByName;
+
 @WebServlet(name = "SignOutServlet", value = "/sign-out")
 public class SignOutServlet extends CoffeeShopServlet {
-    private final SessionDao sessionDao = new SessionDao();
+    private SessionDao sessionDao;
 
-    public SignOutServlet() throws ServletException {
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        sessionDao = new SessionDao();
+        super.init(config);
     }
 
     @Override
