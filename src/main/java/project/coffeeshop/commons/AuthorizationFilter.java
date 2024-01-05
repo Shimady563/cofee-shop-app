@@ -6,7 +6,6 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.thymeleaf.context.WebContext;
 import project.coffeeshop.authentication.Session;
 import project.coffeeshop.authentication.SessionDao;
 

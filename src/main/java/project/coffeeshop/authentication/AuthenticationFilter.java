@@ -6,8 +6,6 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.thymeleaf.context.WebContext;
-import project.coffeeshop.commons.ThymeleafConfig;
 
 import java.io.IOException;
 import java.time.LocalDateTime;;
