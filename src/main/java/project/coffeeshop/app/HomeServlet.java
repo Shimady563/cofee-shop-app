@@ -1,5 +1,6 @@
 package project.coffeeshop.app;
 
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
@@ -17,27 +18,34 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
+import static project.coffeeshop.commons.ServletUtil.findCookieByName;
+import static project.coffeeshop.commons.ServletUtil.isValidSession;
+
 @WebServlet(name = "HomeServlet", value = {"", "/home"})
 public class HomeServlet extends CoffeeShopServlet {
-    private final SessionDao sessionDao = new SessionDao();
-    private final UserDao userDao = new UserDao();
+    private SessionDao sessionDao;
+    private UserDao userDao;
 
-    public HomeServlet() throws ServletException {
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        sessionDao = new SessionDao();
+        userDao = new UserDao();
+        super.init(config);
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Cookie[] cookies = request.getCookies();
-        Optional<Cookie> cookieOptional = CoffeeShopServlet.findCookieByName(cookies, "sessionId");
+        Optional<Cookie> cookieOptional = findCookieByName(cookies, "sessionId");
 
         if (cookieOptional.isPresent()) {
             Optional<Session> sessionOptional = sessionDao.findById(UUID.fromString(cookieOptional.get().getValue()));
 
-            if (sessionOptional.isPresent() && CoffeeShopServlet.isValidSession(sessionOptional.get(), LocalDateTime.now())) {
-                request.setAttribute("auth", true);
+            if (sessionOptional.isPresent() && isValidSession(sessionOptional.get(), LocalDateTime.now())) {
+                webContext.setVariable("auth", true);
 
                 Optional<User> userOptional = userDao.findById(sessionOptional.get().getUserId());
-                userOptional.ifPresent((user -> request.setAttribute("username", user.getUsername())));
+                userOptional.ifPresent((user -> webContext.setVariable("username", user.getUsername())));
             }
         }
 

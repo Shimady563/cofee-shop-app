@@ -1,6 +1,7 @@
 package project.coffeeshop.authentication;
 
 import com.lambdaworks.crypto.SCryptUtil;
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
@@ -13,12 +14,19 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
+import static project.coffeeshop.commons.ServletUtil.findCookieByName;
+import static project.coffeeshop.commons.ServletUtil.isValidSession;
+
 @WebServlet(name = "ProfileServlet", value = "/profile")
 public class ProfileServlet extends CoffeeShopServlet {
-    private final UserDao userDao = new UserDao();
-    private final SessionDao sessionDao = new SessionDao();
+    private SessionDao sessionDao;
+    private UserDao userDao;
 
-    public ProfileServlet() throws ServletException {
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        sessionDao = new SessionDao();
+        userDao = new UserDao();
+        super.init(config);
     }
 
     @Override
@@ -33,7 +41,7 @@ public class ProfileServlet extends CoffeeShopServlet {
 
             if (sessionOptional.isPresent() && isValidSession(sessionOptional.get(), LocalDateTime.now())) {
                 Optional<User> userOptional = userDao.findById(sessionOptional.get().getUserId());
-                userOptional.ifPresent(user -> request.setAttribute("username", user.getUsername()));
+                userOptional.ifPresent(user -> webContext.setVariable("username", user.getUsername()));
             }
         }
 

@@ -1,6 +1,7 @@
 package project.coffeeshop.authentication;
 
 import com.lambdaworks.crypto.SCryptUtil;
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
@@ -15,10 +16,14 @@ import java.util.UUID;
 
 @WebServlet(name = "SignUpServlet", value = "/sign-up")
 public class SignUpServlet extends CoffeeShopServlet {
-    private final UserDao userDao = new UserDao();
-    private final SessionDao sessionDao = new SessionDao();
+    private SessionDao sessionDao;
+    private UserDao userDao;
 
-    public SignUpServlet() throws ServletException {
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        sessionDao = new SessionDao();
+        userDao = new UserDao();
+        super.init(config);
     }
 
     @Override
@@ -35,13 +40,13 @@ public class SignUpServlet extends CoffeeShopServlet {
         Optional<User> userOptional = userDao.findByUsername(username);
 
         if (userOptional.isPresent()) {
-            request.setAttribute("message", "User already exists");
+            webContext.setVariable("message", "User already exists");
             templateEngine.process("sign-up", webContext, response.getWriter());
             return;
         }
 
         if (!password.equals(confirmPassword)) {
-            request.setAttribute("message", "Password mismatch");
+            webContext.setVariable("message", "Password mismatch");
             templateEngine.process("sign-up", webContext, response.getWriter());
             return;
         }
@@ -60,7 +65,7 @@ public class SignUpServlet extends CoffeeShopServlet {
         Cookie sessionCookie = new Cookie("sessionId", sessionId.toString());
         sessionCookie.setMaxAge(6*60*60);
         response.addCookie(sessionCookie);
-        Optional<String> path = Optional.ofNullable((String) request.getAttribute("path"));
+        Optional<String> path = Optional.ofNullable((String) getServletContext().getAttribute("path"));
         response.sendRedirect(request.getContextPath() + path.orElse("/profile"));
     }
 }

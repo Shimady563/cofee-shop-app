@@ -13,7 +13,7 @@ public class RedirectServlet extends CoffeeShopServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Optional<String> path = Optional.ofNullable((String) request.getAttribute("path"));
+        Optional<String> path = Optional.ofNullable((String) getServletContext().getAttribute("path"));
         response.sendRedirect(request.getContextPath() + path.orElse("/"));
     }
 }
