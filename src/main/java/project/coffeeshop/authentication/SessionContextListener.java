@@ -4,32 +4,30 @@ import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebListener;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.*;
 
 @WebListener
 public class SessionContextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        long interval = 1000 * 6 * 60 * 60;
+        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+
         try {
             SessionDao sessionDao = new SessionDao();
-            Timer timer = new Timer("ExpiredSessionsDeletion");
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run()  {
-                    try {
-                        sessionDao.deleteExpiredSessions(LocalDateTime.now());
-                    } catch (ServletException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }, interval, interval);
+            long interval = 6 * 60 * 60;
+
+            service.scheduleWithFixedDelay(() -> sessionDao.deleteExpiredSessions(LocalDateTime.now()), interval, interval, TimeUnit.SECONDS);
+
         } catch (ServletException e) {
             throw new RuntimeException(e);
+        } finally {
+            service.shutdown();
         }
     }
 }

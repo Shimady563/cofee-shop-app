@@ -77,7 +77,7 @@ public class SessionDao {
         }
     }
 
-    public void deleteExpiredSessions(LocalDateTime now) throws ServletException {
+    public void deleteExpiredSessions(LocalDateTime now) {
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection
                      .prepareStatement("delete from public.session where expiration_time < ?")) {
@@ -86,7 +86,7 @@ public class SessionDao {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            throw new ServletException(e);
+            System.out.println(e.getMessage());
         }
     }
 }
