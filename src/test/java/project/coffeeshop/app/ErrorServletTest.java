@@ -15,8 +15,7 @@ import java.lang.reflect.Field;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.only;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ErrorServletTest {
@@ -46,9 +45,9 @@ public class ErrorServletTest {
     }
 
     @Test
-    public void doGet_ShouldProcessErrorTemplate() throws IOException {
+    public void doGet_Should_ProcessErrorTemplate() throws IOException {
         errorServlet.doGet(request, response);
 
-        verify(templateEngine).process(eq("error"), eq(webContext), any());
+        verify(templateEngine, times(1)).process(eq("error"), eq(webContext), any());
     }
 }

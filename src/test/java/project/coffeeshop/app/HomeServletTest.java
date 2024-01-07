@@ -77,9 +77,9 @@ public class HomeServletTest {
 
         homeServlet.doGet(request, response);
 
-        verify(webContext).setVariable(eq("auth"), eq(true));
-        verify(webContext).setVariable(eq("username"), eq("Test"));
-        verify(templateEngine).process(eq("index"), eq(webContext), any());
+        verify(webContext, times(1)).setVariable(eq("auth"), eq(true));
+        verify(webContext, times(1)).setVariable(eq("username"), eq("Test"));
+        verify(templateEngine, times(1)).process(eq("index"), eq(webContext), any());
     }
 
     @Test
@@ -94,7 +94,7 @@ public class HomeServletTest {
 
         verify(webContext, never()).setVariable(eq("auth"), eq(true));
         verify(webContext, never()).setVariable(eq("username"), any());
-        verify(templateEngine).process(eq("index"), eq(webContext), any());
+        verify(templateEngine, times(1)).process(eq("index"), eq(webContext), any());
     }
 
     @Test
@@ -105,7 +105,7 @@ public class HomeServletTest {
 
         verify(webContext, never()).setVariable(eq("auth"), eq(true));
         verify(webContext, never()).setVariable(eq("username"), any());
-        verify(templateEngine).process(eq("index"), eq(webContext), any());
+        verify(templateEngine, times(1)).process(eq("index"), eq(webContext), any());
     }
 
     @Test
@@ -117,6 +117,6 @@ public class HomeServletTest {
 
         verify(webContext, never()).setVariable(eq("auth"), eq(true));
         verify(webContext, never()).setVariable(eq("username"), any());
-        verify(templateEngine).process(eq("index"), eq(webContext), any());
+        verify(templateEngine, times(1)).process(eq("index"), eq(webContext), any());
     }
 }

@@ -1,12 +1,10 @@
 package project.coffeeshop.authentication;
 
 import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -72,7 +70,7 @@ public class AuthenticationFilterTest {
 
         authenticationFilter.doFilter(request, response, filterChain);
 
-        verify(filterChain).doFilter(request, response);
+        verify(filterChain, times(1)).doFilter(request, response);
     }
 
     @Test
@@ -82,7 +80,7 @@ public class AuthenticationFilterTest {
 
         authenticationFilter.doFilter(request, response, filterChain);
 
-        verify(filterChain).doFilter(request, response);
+        verify(filterChain, times(1)).doFilter(request, response);
     }
 
     @Test
@@ -92,6 +90,6 @@ public class AuthenticationFilterTest {
         authenticationFilter.doFilter(request, response, filterChain);
 
         verify(sessionDao, never()).findById(any());
-        verify(filterChain).doFilter(request, response);
+        verify(filterChain, times(1)).doFilter(request, response);
     }
 }

@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import project.coffeeshop.authentication.AuthenticationFilter;
 import project.coffeeshop.authentication.Session;
 import project.coffeeshop.authentication.SessionDao;
 
@@ -58,7 +57,7 @@ public class AuthorizationFilterTest {
 
         authorizationFilter.doFilter(request, response, filterChain);
 
-        verify(filterChain).doFilter(request, response);
+        verify(filterChain, times(1)).doFilter(request, response);
     }
 
     @Test
