@@ -35,6 +35,9 @@
 					<label for="newPassword">Password:</label>
 					<input type="password" class="form-control" id="newPassword" name="newPassword">
 				</div>
+				<!-- Element for error messages-->
+				<p th:text="${message}" style="color: red; font-size: 12px; margin: 0">
+				</p>
 				<button type="submit" class="btn btn-primary" style="background-color: black; border-color: black">Update
 				</button>
 			</form>

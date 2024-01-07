@@ -37,6 +37,12 @@ public class SignUpServlet extends CoffeeShopServlet {
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirmPassword");
 
+        if (password.length() < 3 || username.length() < 3) {
+            webContext.setVariable("message", "Username or password is too short");
+            templateEngine.process("sign-up", webContext, response.getWriter());
+            return;
+        }
+
         Optional<User> userOptional = userDao.findByUsername(username);
 
         if (userOptional.isPresent()) {

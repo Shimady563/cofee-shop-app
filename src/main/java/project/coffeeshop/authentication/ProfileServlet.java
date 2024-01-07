@@ -51,7 +51,16 @@ public class ProfileServlet extends CoffeeShopServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String newUsername = request.getParameter("newLogin");
-        Optional<String> newPassword = Optional.ofNullable(request.getParameter("newPassword"));
+        String newPassword = request.getParameter("newPassword");
+
+        if (!newPassword.isBlank() && newPassword.length() < 3
+                || newUsername.isBlank() || newUsername.length() < 3) {
+            webContext.setVariable("message", "Username or password is too short");
+
+            //calling doGet explicitly to show both username and message attributes on the page
+            doGet(request, response);
+            return;
+        }
 
         Cookie[] cookies = request.getCookies();
         Optional<Cookie> cookieOptional = findCookieByName(cookies, "sessionId");
@@ -73,17 +82,24 @@ public class ProfileServlet extends CoffeeShopServlet {
                         updated = true;
                     }
 
-                    if (newPassword.isPresent() && !SCryptUtil.check(newPassword.get(), user.getPassword())) {
-                        user.setPassword(SCryptUtil.scrypt(newPassword.get(), 16, 16, 16));
+                    if (!newPassword.isBlank() && !SCryptUtil.check(newPassword, user.getPassword())) {
+                        user.setPassword(SCryptUtil.scrypt(newPassword, 16, 16, 16));
                         updated = true;
                     }
 
+                    webContext.setVariable("username", user.getUsername());
+
                     if (updated) {
+                        webContext.setVariable("message", "Changes saved successfully");
                         userDao.update(user);
-                        response.sendRedirect(request.getContextPath() + "/profile");
+                    } else {
+                        webContext.setVariable("message", "Username or password is the same");
                     }
                 }
             }
         }
+
+        //calling doGet explicitly to show both username and message attributes on the page
+        doGet(request, response);
     }
 }
