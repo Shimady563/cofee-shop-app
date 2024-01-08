@@ -1,5 +1,9 @@
 # Coffee shop app
 
+![Header home page image](./img/HomePage.png)
+
+![Header profile page image](./img/ProfilePage.png)
+
 ## Overview
 
 A web application of a coffee shop. User can register which allows
