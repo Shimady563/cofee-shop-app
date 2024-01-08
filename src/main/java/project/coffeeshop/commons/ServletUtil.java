@@ -9,6 +9,10 @@ import java.util.Optional;
 
 public class ServletUtil {
     public static Optional<Cookie> findCookieByName(Cookie[] cookies, String name) {
+        if (cookies == null || cookies.length == 0) {
+            return Optional.empty();
+        }
+
         return Arrays.stream(cookies)
                 .filter(c -> c.getName().equals(name))
                 .findFirst();
