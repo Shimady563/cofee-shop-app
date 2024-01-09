@@ -13,10 +13,10 @@ and read the news about the coffee shop and it's offerings.
 
 ## Future plans
 
-While i'm working on favorites and news, i also plan to 
+While I'm working on favorites and news, I also plan to 
 implement purchase ability. It will include the ability to add
-items to cart and buy them. Also there will be points system, which will
-allow users to recieve points for purchases and spend them in the future.
+items to cart and buy them. Also, there will be points system, which will
+allow users to receive points for purchases and spend them in the future.
 
 ## Technologies used
 
@@ -27,5 +27,5 @@ For data access I use jdbc and postgres.
 For interface I use bootstrap and thymeleaf
 
 I chose servlets and jdbc instead of spring and hibernate
-because i wanted to learn more about their work, i think 
+because I wanted to learn more about their work, I think 
 it helps better understand how spring and hibernate works.
