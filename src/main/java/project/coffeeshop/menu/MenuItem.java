@@ -10,7 +10,7 @@ import lombok.*;
 public class MenuItem {
     private long id;
     private String name;
-    private int price;
+    private double price;
     private int volume;
     private String image;
 }

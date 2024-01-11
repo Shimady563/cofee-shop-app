@@ -16,7 +16,7 @@ public class MenuDao {
     public MenuDao() throws ServletException {
         try {
             Context context = new InitialContext();
-            dataSource = (DataSource) context.lookup("java:comp/env/jdbc/DefaultDB");
+            dataSource = (DataSource) context.lookup("java:comp/env/jdbc/db");
         } catch (NamingException e) {
             throw new ServletException(e);
         }
@@ -52,13 +52,13 @@ public class MenuDao {
     }
 
     private List<MenuItem> getMenuItems(ResultSet resultSet) throws ServletException {
-        List<MenuItem> menuItems = new ArrayList<>();
         try {
+            List<MenuItem> menuItems = new ArrayList<>();
             while (resultSet.next()) {
                 MenuItem menuItem = new MenuItem(
                         resultSet.getLong("id"),
                         resultSet.getString("name"),
-                        resultSet.getInt("price"),
+                        resultSet.getDouble("price"),
                         resultSet.getInt("volume"),
                         resultSet.getString("image")
                 );
@@ -66,10 +66,10 @@ public class MenuDao {
             }
 
             resultSet.close();
+            return menuItems;
         } catch (SQLException e) {
             throw new ServletException(e);
         }
-        return menuItems;
     }
 }
 
