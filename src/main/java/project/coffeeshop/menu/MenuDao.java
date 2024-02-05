@@ -51,6 +51,46 @@ public class MenuDao {
         }
     }
 
+    public void saveToFavorites(long userId, int itemId) throws ServletException {
+        try (Connection connection = dataSource.getConnection()) {
+            if (!isAlreadyAdded(connection, userId, itemId)) {
+                try (PreparedStatement preparedStatement = connection
+                        .prepareStatement("insert into public.user_menu_item values (?, ?)")) {
+
+                    preparedStatement.setLong(1, userId);
+                    preparedStatement.setInt(2, itemId);
+
+                    preparedStatement.executeUpdate();
+                }
+            }
+        } catch (SQLException e) {
+            throw new ServletException(e);
+        }
+    }
+
+    private boolean isAlreadyAdded(Connection connection, long userId, int itemId) throws ServletException {
+        String query = "select count(*) from public.user_menu_item " +
+                "where user_id = ? and menu_item_id = ?";
+        try (PreparedStatement preparedStatement = connection
+                .prepareStatement(query)) {
+
+            preparedStatement.setLong(1, userId);
+            preparedStatement.setInt(2, itemId);
+            preparedStatement.executeQuery();
+
+            ResultSet resultSet = preparedStatement.getResultSet();
+            boolean isEmpty = true;
+            while (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                isEmpty = count >  0;
+            }
+
+            return isEmpty;
+        } catch (SQLException e) {
+            throw new ServletException(e);
+        }
+    }
+
     private List<MenuItem> getMenuItems(ResultSet resultSet) throws ServletException {
         try {
             List<MenuItem> menuItems = new ArrayList<>();
@@ -72,4 +112,3 @@ public class MenuDao {
         }
     }
 }
-
