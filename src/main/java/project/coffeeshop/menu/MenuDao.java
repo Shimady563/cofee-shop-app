@@ -35,8 +35,8 @@ public class MenuDao {
     }
 
     public List<MenuItem> findByUserId(long userId) throws ServletException {
-        String query = "select * from public.menu_item a" +
-                "join public.user_menu_items b on a.id = b.menu_item_id" +
+        String query = "select * from public.menu_item a " +
+                "join public.user_menu_item b on a.id = b.menu_item_id " +
                 "where b.user_id = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection

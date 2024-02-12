@@ -13,36 +13,12 @@
 </nav>
 <div class="container menu-container">
 	<div class="row">
-		<div class="col-3">
+		<div class="col-3" th:each="menuItem : ${menuItems}">
 			<div class="menu-item">
-				<img src="img/coffee.webp" alt="Item 1" class="item-image">
-				<p class="item-name">Cappuccino</p>
-				<p class="item-volume"> 200ml</p>
-				<p class="item-cost"> $5.99</p>
-			</div>
-		</div>
-		<div class="col-3">
-			<div class="menu-item">
-				<img src="img/coffee.webp" alt="Item 2" class="item-image">
-				<p class="item-name">Cappuccino</p>
-				<p class="item-volume"> 300ml</p>
-				<p class="item-cost"> $8.99</p>
-			</div>
-		</div>
-		<div class="col-3">
-			<div class="menu-item">
-				<img src="img/coffee.webp" alt="Item 3" class="item-image">
-				<p class="item-name">Cappuccino</p>
-				<p class="item-volume"> 400ml</p>
-				<p class="item-cost"> $12.99</p>
-			</div>
-		</div>
-		<div class="col-3">
-			<div class="menu-item">
-				<img src="img/coffee.webp" alt="Item 3" class="item-image">
-				<p class="item-name">Cappuccino</p>
-				<p class="item-volume"> 500ml</p>
-				<p class="item-cost"> $15.99</p>
+				<img class="item-image" alt="Item 1" th:src="@{${menuItem.image}}">
+				<p class="item-name" th:utext="${' ' + menuItem.name}"></p>
+				<p class="item-volume" th:utext="${' ' + menuItem.volume + 'ml'}"></p>
+				<p class="item-cost" th:utext="${' $' + menuItem.price}"></p>
 			</div>
 		</div>
 	</div>
