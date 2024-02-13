@@ -19,6 +19,11 @@
 	</div>
 </nav>
 <div class="container menu-container">
+	<div class="row justify-content-center" th:if="${menuItems.isEmpty()}">
+		<div class="message-container">
+			<p>There's nothing here yet, you can add items from the menu page</p>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-3" th:each="menuItem : ${menuItems}">
 			<div class="menu-item">
@@ -26,6 +31,10 @@
 				<p class="item-name" th:utext="${' ' + menuItem.name}"></p>
 				<p class="item-volume" th:utext="${' ' + menuItem.volume + 'ml'}"></p>
 				<p class="item-cost" th:utext="${' $' + menuItem.price}"></p>
+				<form action="favorites" method="post">
+					<input type="hidden" name="menuItemId" th:value="${menuItem.id}">
+					<button type="submit" class="btn btn-primary item-remove">Remove</button>
+				</form>
 			</div>
 		</div>
 	</div>

@@ -50,4 +50,21 @@ public class FavoritesServlet extends CoffeeShopServlet {
 
         throw new ServletException("Couldn't load favorites");
     }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int menuItemId = Integer.parseInt(request.getParameter("menuItemId"));
+        Cookie[] cookies = request.getCookies();
+        Optional<Cookie> cookieOptional = findCookieByName(cookies, "sessionId");
+
+        if (cookieOptional.isPresent()) {
+            Optional<Session> sessionOptional = sessionDao.findById(UUID.fromString(cookieOptional.get().getValue()));
+
+            if (sessionOptional.isPresent()) {
+                menuDao.deleteUserFavorites(sessionOptional.get().getUserId(), menuItemId);
+            }
+        }
+
+        doGet(request, response);
+    }
 }

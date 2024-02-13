@@ -21,6 +21,16 @@
     color: whitesmoke;
 }
 
+.message-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+}
+
 .menu-container {
     margin-top: 30px;
 }
@@ -48,12 +58,21 @@
 
 .item-cost {
     position: absolute;
-    bottom: 10px;
+    bottom: 60px;
     left: 30px;
 }
 
 .item-volume {
     position: absolute;
-    bottom: 10px;
+    bottom: 60px;
     right: 30px;
+}
+
+.btn,
+.btn:hover,
+.btn:focus,
+.btn:active {
+    background-color: black !important;
+    border: none !important;
+    color: white !important;
 }

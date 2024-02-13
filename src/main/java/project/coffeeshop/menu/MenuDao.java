@@ -68,6 +68,21 @@ public class MenuDao {
         }
     }
 
+    public void deleteUserFavorites(long userId, int itemId) throws ServletException {
+        String query = "delete from public.user_menu_item " +
+                "where user_id = ? and menu_item_id = ?";
+        try (Connection connection = dataSource.getConnection();
+        PreparedStatement preparedStatement = connection
+                .prepareStatement(query)) {
+
+            preparedStatement.setLong(1, userId);
+            preparedStatement.setInt(2, itemId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new ServletException(e);
+        }
+    }
+
     private boolean isAlreadyAdded(Connection connection, long userId, int itemId) throws ServletException {
         String query = "select count(*) from public.user_menu_item " +
                 "where user_id = ? and menu_item_id = ?";
