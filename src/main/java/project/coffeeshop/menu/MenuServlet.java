@@ -23,13 +23,11 @@ import static project.coffeeshop.commons.ServletUtil.findCookieByName;
 public class MenuServlet extends CoffeeShopServlet {
     private MenuDao menuDao;
     private SessionDao sessionDao;
-    private UserDao userDao;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         menuDao = new MenuDao();
         sessionDao = new SessionDao();
-        userDao = new UserDao();
         super.init(config);
     }
 
@@ -53,13 +51,9 @@ public class MenuServlet extends CoffeeShopServlet {
             Optional<Session> sessionOptional = sessionDao.findById(UUID.fromString(cookieOptional.get().getValue()));
 
             if (sessionOptional.isPresent()) {
-                Optional<User> userOptional = userDao.findById(sessionOptional.get().getUserId());
-
-                if (userOptional.isPresent()) {
-                    menuDao.saveToFavorites(userOptional.get().getId(), menuItemId);
-                    webContext.setVariable("itemId", menuItemId);
-                    webContext.setVariable("message", "Added to favorites");
-                }
+                menuDao.saveToFavorites(sessionOptional.get().getUserId(), menuItemId);
+                webContext.setVariable("itemId", menuItemId);
+                webContext.setVariable("message", "Added to favorites");
             }
         }
 
