@@ -4,6 +4,10 @@
 
 ![Header profile page image](./img/ProfilePage.png)
 
+![Header menu page image](./img/MenuPage.png)
+
+![Header favorites page image](./img/FavoritesPage.png)
+
 ## Overview
 
 A web application of a coffee shop. User can register which allows
