@@ -8,8 +8,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import project.coffeeshop.authentication.Session;
 import project.coffeeshop.authentication.SessionDao;
-import project.coffeeshop.authentication.User;
-import project.coffeeshop.authentication.UserDao;
 import project.coffeeshop.commons.CoffeeShopServlet;
 
 import java.io.IOException;
