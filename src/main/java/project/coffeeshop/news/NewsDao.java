@@ -36,12 +36,12 @@ public class NewsDao {
 
     public List<PieceOfNews> searchByTitle(String key) throws ServletException {
         String query = "select * from public.news " +
-                "where title like '%?%'";
+                "where title ilike ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection
                      .prepareStatement(query)) {
 
-            preparedStatement.setString(1, key);
+            preparedStatement.setString(1, "%" + key + "%");
             return getNews(preparedStatement.executeQuery());
         } catch (SQLException e) {
             throw new ServletException(e);
