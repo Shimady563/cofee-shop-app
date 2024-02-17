@@ -5,13 +5,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Profile</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/profile.css">
+	<link rel="stylesheet" th:href="@{/css/profile.css}">
 </head>
 <body>
 <nav class="navbar">
-	<a href="home"><h1 class="navbar-brand">Coffee Shop</h1></a>
+	<a th:href="@{/home}"><h1 class="navbar-brand">Coffee Shop</h1></a>
 	<div class="navbar-nav ml-auto">
-		<a class="nav-item nav-link" href="sign-out">Sign Out</a>
+		<a class="nav-item nav-link" th:href="@{/sign-out}">Sign Out</a>
 	</div>
 </nav>
 <div class="container mt-5">
@@ -19,24 +19,24 @@
 		<div class="col-md-4">
 			<h2>Profile</h2>
 			<ul class="list-group">
-				<li class="list-group-item"><a href="news.html">News</a></li>
-				<li class="list-group-item"><a href="favorites">Favorites</a></li>
-				<li class="list-group-item"><a href="menu">Menu</a></li>
+				<li class="list-group-item"><a th:href="@{/news}">News</a></li>
+				<li class="list-group-item"><a th:href="@{/favorites}">Favorites</a></li>
+				<li class="list-group-item"><a th:href="@{/menu}">Menu</a></li>
 			</ul>
 		</div>
 		<div class="col-md-8">
 			<h2>Change Username/Password</h2>
-			<form action="profile" method="post">
+			<form method="post" th:action="@{/profile}">
 				<div class="form-group">
 					<label for="newLogin">Username:</label>
-					<input th:value="${username}" type="text" class="form-control" id="newLogin" name="newLogin" required>
+					<input type="text" class="form-control" id="newLogin" name="newLogin" required th:value="${username}">
 				</div>
 				<div class="form-group">
 					<label for="newPassword">Password:</label>
 					<input type="password" class="form-control" id="newPassword" name="newPassword">
 				</div>
 				<!-- Element for error messages-->
-				<p th:text="${message}" style="color: red; font-size: 12px; margin: 0">
+				<p style="color: red; font-size: 12px; margin: 0" th:text="${message}">
 				</p>
 				<button type="submit" class="btn btn-primary" style="background-color: black; border-color: black">Update
 				</button>

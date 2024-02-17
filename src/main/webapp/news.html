@@ -5,13 +5,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>News</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/news.css">
+	<link rel="stylesheet" th:href="@{/css/news.css}">
 </head>
 <body>
 <nav class="navbar">
-	<h1><a class="navbar-brand" href="home">Coffee Shop</a></h1>
-	<form class="form-inline my-2 my-lg-0 ml-auto" action="news" method="post">
-		<input class="form-control mr-2" type="search" name="requestText" placeholder="Enter news title" aria-label="Search">
+	<h1><a class="navbar-brand" th:href="@{/home}">Coffee Shop</a></h1>
+	<form class="form-inline my-2 my-lg-0 ml-auto" method="post" th:action="@{/news}">
+		<input class="form-control mr-2" type="search" name="requestText" placeholder="Enter news title"
+		       aria-label="Search">
 		<button class="btn btn-outline-success my-2" type="submit">Search</button>
 	</form>
 </nav>
@@ -24,7 +25,7 @@
 	<div class="row">
 		<div class="col-md-4" th:each="pieceOfNews : ${news}">
 			<a th:href="@{'/news/' + ${pieceOfNews.title} + '?id=' + ${pieceOfNews.id}}" class="news-block">
-				<img alt="News" class="img-fluid" th:src="@{${pieceOfNews.image}}">
+				<img alt="News" class="img-fluid" th:src="@{'/' + ${pieceOfNews.image}}">
 				<p th:text="${pieceOfNews.title}"></p>
 			</a>
 		</div>
