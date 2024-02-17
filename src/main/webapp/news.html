@@ -16,29 +16,16 @@
 	</form>
 </nav>
 <div class="container mt-4">
+	<div class="row justify-content-center" th:if="${news.isEmpty()}">
+		<div class="message-container">
+			<p>No news yet, but they will appear soon</p>
+		</div>
+	</div>
 	<div class="row">
-		<div class="col-md-4">
-			<a href="piece-of-news.html" class="news-block">
-				<img src="img/coffee.webp" alt="News 1" class="img-fluid">
-				<p>Long title for line wrap test and many other meaningless words</p>
-			</a>
-		</div>
-		<div class="col-md-4">
-			<a href="#" class="news-block">
-				<img src="img/coffee.webp" alt="News 2" class="img-fluid">
-				<p>News 2</p>
-			</a>
-		</div>
-		<div class="col-md-4">
-			<a href="#" class="news-block">
-				<img src="img/coffee.webp" alt="News 3" class="img-fluid">
-				<p>News 3</p>
-			</a>
-		</div>
-		<div class="col-md-4">
-			<a href="#" class="news-block">
-				<img src="img/coffee.webp" alt="News 4" class="img-fluid">
-				<p>News 4</p>
+		<div class="col-md-4" th:each="pieceOfNews : ${news}">
+			<a class="news-block" href="piece-of-news.html">
+				<img alt="News" class="img-fluid" th:src="@{${pieceOfNews.image}}">
+				<p th:text="${pieceOfNews.title}"></p>
 			</a>
 		</div>
 	</div>
