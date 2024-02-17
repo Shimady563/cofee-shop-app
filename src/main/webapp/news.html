@@ -23,7 +23,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-4" th:each="pieceOfNews : ${news}">
-			<a class="news-block" href="piece-of-news.html">
+			<a th:href="@{'/news/' + ${pieceOfNews.title} + '?id=' + ${pieceOfNews.id}}" class="news-block">
 				<img alt="News" class="img-fluid" th:src="@{${pieceOfNews.image}}">
 				<p th:text="${pieceOfNews.title}"></p>
 			</a>

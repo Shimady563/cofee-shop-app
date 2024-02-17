@@ -14,5 +14,5 @@ public class PieceOfNews {
     private String title;
     private LocalDateTime creationDate;
     private String image;
-    private String body;
+    private String article;
 }

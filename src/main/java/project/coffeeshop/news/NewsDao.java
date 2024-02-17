@@ -7,9 +7,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class NewsDao {
     private final DataSource dataSource;
@@ -43,6 +43,31 @@ public class NewsDao {
 
             preparedStatement.setString(1, "%" + key + "%");
             return getNews(preparedStatement.executeQuery());
+        } catch (SQLException e) {
+            throw new ServletException(e);
+        }
+    }
+
+    public Optional<PieceOfNews> getById(long id) throws ServletException {
+        String query = "select * from public.news " +
+                "where id = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection
+                     .prepareStatement(query)) {
+
+            preparedStatement.setLong(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                return Optional.of(new PieceOfNews(
+                        resultSet.getLong(1),
+                        resultSet.getString(2),
+                        resultSet.getTimestamp(3).toLocalDateTime(),
+                        resultSet.getString(4),
+                        resultSet.getString(5)
+                ));
+            }
+
+            return Optional.empty();
         } catch (SQLException e) {
             throw new ServletException(e);
         }
