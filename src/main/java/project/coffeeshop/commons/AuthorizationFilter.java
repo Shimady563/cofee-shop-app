@@ -16,7 +16,7 @@ import java.util.UUID;
 
 import static project.coffeeshop.commons.ServletUtil.*;
 
-@WebFilter(filterName = "AuthorizationFilter", servletNames = {"ProfileServlet", "MenuServlet", "FavoritesServlet"})
+@WebFilter(filterName = "AuthorizationFilter", servletNames = {"ProfileServlet", "MenuServlet", "FavoritesServlet", "NewsServlet", "PieceOfNewsServlet"})
 public class AuthorizationFilter extends HttpFilter {
     private SessionDao sessionDao;
 

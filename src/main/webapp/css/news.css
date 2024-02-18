@@ -12,6 +12,16 @@
     color: whitesmoke;
 }
 
+.message-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+}
+
 .btn,
 .btn:hover,
 .btn:focus {
