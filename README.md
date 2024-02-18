@@ -8,6 +8,10 @@
 
 ![Header favorites page image](./img/FavoritesPage.png)
 
+![Header news page image](./img/NewsPage.png)
+
+![Header piece of news page image](./img/PieceOfNewsPage.png)
+
 ## Overview
 
 A web application of a coffee shop. User can register which allows
