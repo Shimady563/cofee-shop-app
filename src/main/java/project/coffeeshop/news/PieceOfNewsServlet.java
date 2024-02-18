@@ -11,8 +11,6 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
-import static project.coffeeshop.commons.ServletUtil.parsePath;
-
 @WebServlet(name = "PieceOfNewsServlet", value = "/news/*")
 public class PieceOfNewsServlet extends CoffeeShopServlet {
     public NewsDao newsDao;
@@ -25,7 +23,6 @@ public class PieceOfNewsServlet extends CoffeeShopServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String uri = request.getRequestURI();
         long pieceOfNewsId = Long.parseLong(request.getParameter("id"));
         Optional<PieceOfNews> pieceOfNewsOptional = newsDao.getById(pieceOfNewsId);
 
@@ -36,6 +33,7 @@ public class PieceOfNewsServlet extends CoffeeShopServlet {
                     .format(DateTimeFormatter
                             .ofPattern("HH:mm, d MMMM yyyy")));
         });
+
         templateEngine.process("piece-of-news", webContext, response.getWriter());
     }
 }
