@@ -17,7 +17,7 @@
 A web application of a coffee shop. User can register which allows
 to view and change his username and password, view coffee shop menu, 
 save preferred menu items to favorites for easy access 
-and read the news about the coffee shop and it's offerings.
+and read the news about the coffee shop and coffee related topics.
 
 ## Future plans
 
