@@ -5,8 +5,24 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title th:utext="${pieceOfNews.title}"></title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<link rel="stylesheet" th:href="@{/css/piece-of-news.css}">
 	<link rel="stylesheet" th:href="@{/css/navbar.css}">
+	<style>
+		.news-container {
+			max-width: 1000px;
+			margin: 50px auto auto;
+		}
+
+		.news-image {
+			max-width: 100%;
+			height: auto;
+			margin-bottom: 20px;
+			border-radius: 10px;
+		}
+
+		.news-content {
+			text-align: justify;
+		}
+	</style>
 </head>
 <body>
 <th:block th:replace="~{navbar ::navbar('profile', 'menu', 'favorites', '')}"></th:block>

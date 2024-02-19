@@ -5,8 +5,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Profile</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<link rel="stylesheet" th:href="@{/css/profile.css}">
 	<link rel="stylesheet" th:href="@{/css/navbar.css}">
+	<style>
+		.list-group .list-group-item a {
+			color: black;
+			text-decoration: none;
+		}
+
+		.list-group .list-group-item a:hover,
+		.list-group .list-group-item a:focus {
+			color: #262626;
+		}
+	</style>
 </head>
 <body>
 <th:block th:replace="~{navbar ::navbar('', '', '', 'profile')}"></th:block>

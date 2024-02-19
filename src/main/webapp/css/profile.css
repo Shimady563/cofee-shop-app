@@ -1,9 +1,0 @@
-.list-group .list-group-item a {
-    color: black;
-    text-decoration: none;
-}
-
-.list-group .list-group-item a:hover,
-.list-group .list-group-item a:focus {
-    color: #262626;
-}
