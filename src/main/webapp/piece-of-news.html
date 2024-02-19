@@ -6,11 +6,10 @@
 	<title th:utext="${pieceOfNews.title}"></title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link rel="stylesheet" th:href="@{/css/piece-of-news.css}">
+	<link rel="stylesheet" th:href="@{/css/navbar.css}">
 </head>
 <body>
-<nav class="navbar">
-	<h1><a class="navbar-brand" th:href="@{/home}">Coffee Shop</a></h1>
-</nav>
+<th:block th:replace="~{navbar ::navbar('profile', 'menu', 'favorites', '')}"></th:block>
 <div class="container news-container">
 	<div class="row">
 		<div class="col-12">

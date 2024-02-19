@@ -6,18 +6,10 @@
 	<title>Favorites</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link rel="stylesheet" th:href="@{/css/favorites.css}">
+	<link rel="stylesheet" th:href="@{/css/navbar.css}">
 </head>
 <body>
-<nav class="navbar navbar-expand">
-	<h1><a class="navbar-brand" th:href="@{/home}">Coffee Shop</a></h1>
-	<div class="navbar-collapse justify-content-center m-md-2" id="navbarNav">
-		<ul class="navbar-nav">
-			<li class="nav-item">
-				<a class="nav-link" th:href="@{/menu}">Menu</a>
-			</li>
-		</ul>
-	</div>
-</nav>
+<th:block th:replace="~{navbar ::navbar('profile', 'news', 'menu', '')}"></th:block>
 <div class="container menu-container">
 	<div class="row justify-content-center" th:if="${menuItems.isEmpty()}">
 		<div class="message-container">

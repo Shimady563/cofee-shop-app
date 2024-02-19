@@ -6,33 +6,10 @@
 	<title>Coffee Shop</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link rel="stylesheet" th:href="@{/css/index.css}">
+	<link rel="stylesheet" th:href="@{/css/navbar.css}">
 </head>
 <body>
-<nav class="navbar navbar-expand">
-	<h1 class="navbar-brand">Coffee Shop</h1>
-	<div class="navbar-collapse justify-content-center m-md-2" id="navbarNav">
-		<ul class="navbar-nav">
-			<li class="nav-item">
-				<a class="nav-link" th:href="@{/profile}">Profile</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" th:href="@{/favorites}">Favorites</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" th:href="@{/news}">News</a>
-			</li>
-		</ul>
-	</div>
-	<div class="navbar-nav ml-auto">
-		<div class="nav-item nav-link" th:if="${auth}">
-			<a style="color: white;" th:href="@{/profile}">
-				<span th:text="${username}"></span>
-			</a>
-			<img alt="Profile Icon" style="width: 30px; height: 30px; border-radius: 50%;" th:src="@{/img/coffee-cup.svg}">
-		</div>
-		<a class="nav-item nav-link" th:href="@{/sign-in}" th:unless="${auth}">Sign In</a>
-	</div>
-</nav>
+<th:block th:replace="~{navbar ::navbar('profile', 'news', 'favorites', 'index')}"></th:block>
 <div class="main-content">
 	<h1 class="menu-title">Menu</h1>
 	<div class="text-center">

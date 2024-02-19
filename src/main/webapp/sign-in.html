@@ -5,8 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Sign In</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" th:href="@{/css/navbar.css}">
 </head>
 <body>
+<th:block th:replace="~{navbar ::navbar('', '', '', 'auth')}"></th:block>
 <div class="container mt-5 w-50">
 	<div class="row justify-content-center">
 		<div class="col-md-6">
