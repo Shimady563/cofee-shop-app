@@ -7,27 +7,12 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link rel="stylesheet" th:href="@{/css/menu.css}">
 	<link rel="stylesheet" th:href="@{/css/navbar.css}">
+	<link rel="stylesheet" th:href="@{/css/menu-item.css}">
 </head>
 <body>
 <th:block th:replace="~{navbar ::navbar('profile', 'news', 'favorites', '')}"></th:block>
 <div class="container menu-container">
-	<div class="row">
-		<div class="col-3" th:each="menuItem : ${menuItems}">
-			<div class="menu-item">
-				<div th:if="${menuItem.id == itemId}">
-					<p style="color: red; font-size: 12px; margin: 0" th:text="${message}"></p>
-				</div>
-				<img class="item-image" alt="Item" th:src="@{'/' + ${menuItem.image}}">
-				<p class="item-name" th:utext="${' ' + menuItem.name}"></p>
-				<p class="item-volume" th:utext="${' ' + menuItem.volume + 'ml'}"></p>
-				<p class="item-cost" th:utext="${' $' + menuItem.price}"></p>
-				<form action="menu" method="post">
-					<input type="hidden" name="menuItemId" th:value="${menuItem.id}">
-					<button type="submit" class="btn btn-primary item-add">Add to favorites</button>
-				</form>
-			</div>
-		</div>
-	</div>
+	<th:block th:replace="~{menu-item ::menuItem('menu')}"></th:block>
 </div>
 </body>
 </html>

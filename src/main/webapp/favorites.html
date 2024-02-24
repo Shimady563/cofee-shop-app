@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link rel="stylesheet" th:href="@{/css/favorites.css}">
 	<link rel="stylesheet" th:href="@{/css/navbar.css}">
+	<link rel="stylesheet" th:href="@{/css/menu-item.css}">
 </head>
 <body>
 <th:block th:replace="~{navbar ::navbar('profile', 'news', 'menu', '')}"></th:block>
@@ -16,20 +17,7 @@
 			<p>There's nothing here yet, you can add items from the menu page</p>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-3" th:each="menuItem : ${menuItems}">
-			<div class="menu-item">
-				<img class="item-image" alt="Item 1" th:src="@{'/' + ${menuItem.image}}">
-				<p class="item-name" th:utext="${' ' + menuItem.name}"></p>
-				<p class="item-volume" th:utext="${' ' + menuItem.volume + 'ml'}"></p>
-				<p class="item-cost" th:utext="${' $' + menuItem.price}"></p>
-				<form action="favorites" method="post">
-					<input type="hidden" name="menuItemId" th:value="${menuItem.id}">
-					<button type="submit" class="btn btn-primary item-remove">Remove</button>
-				</form>
-			</div>
-		</div>
-	</div>
+	<th:block th:replace="~{menu-item ::menuItem('favorites')}"></th:block>
 </div>
 </body>
 </html>
