@@ -8,7 +8,7 @@
 	<link rel="stylesheet" th:href="@{/css/menu-item.css}">
 </head>
 <body>
-<div class="row" th:fragment="menuItem(page)">
+<div class="row" th:fragment="menuItemTemplate(page)">
 	<div class="col-3" th:each="menuItem : ${menuItems}">
 		<div class="menu-item">
 			<div th:if="${menuItem.id == itemId}">
