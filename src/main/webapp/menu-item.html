@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Menu Item</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" th:href="@{/css/menu-item.css}">
+</head>
+<body>
+<div class="row" th:fragment="menuItem(page)">
+	<div class="col-3" th:each="menuItem : ${menuItems}">
+		<div class="menu-item">
+			<div th:if="${menuItem.id == itemId}">
+				<p style="color: red; font-size: 12px; margin: 0" th:text="${message}"></p>
+			</div>
+			<img class="item-image" alt="Item" th:src="@{'/' + ${menuItem.image}}">
+			<p class="item-name" th:utext="${' ' + menuItem.name}"></p>
+			<p class="item-volume" th:utext="${' ' + menuItem.volume + 'ml'}"></p>
+			<p class="item-cost" th:utext="${' $' + menuItem.price}"></p>
+			<form action="menu" method="post" th:if="${page eq 'menu'}">
+				<input type="hidden" name="menuItemId" th:value="${menuItem.id}">
+				<button type="submit" class="btn btn-primary item-add">Add to favorites</button>
+			</form>
+			<form action="favorites" method="post" th:if="${page eq 'favorites'}">
+				<input type="hidden" name="menuItemId" th:value="${menuItem.id}">
+				<button type="submit" class="btn btn-primary item-remove">Remove</button>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>
