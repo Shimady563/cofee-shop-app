@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Cart Item</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<th:block th:fragment="cartItem()">
+    <div class="d-flex align-items-center">
+        <img src="product1.jpg" alt="Product 1" class="img-thumbnail mr-3" style="width: 80px;">
+        <div>
+            <h5>Product 1</h5>
+            <p>Volume: 500ml</p>
+        </div>
+    </div>
+    <div class="quantity">
+        <a class="btn btn-outline-secondary btn-sm">-</a>
+        <span class="mx-2">1</span>
+        <a class="btn btn-outline-secondary btn-sm">+</a>
+    </div>
+    <span class="badge badge-primary badge-pill">$20.00</span>
+    <a class="btn btn-danger btn-sm">Remove</a>
+</th:block>
+</body>
+</html>

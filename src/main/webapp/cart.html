@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Cart</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<th:block th:replace="~{navbar ::navbar('menu', 'favorites', 'news', 'cart')}"></th:block>
+<div class="container mt-4">
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <th:block th:replace="cart-item ::cartItem()"></th:block>
+        </li>
+    </ul>
+
+    <div class="mt-4">
+        <h4>Total: $50.00</h4>
+    </div>
+
+    <div class="mt-4">
+        <form method="post" th:action="@{/purchase}">
+            <button type="button" class="btn btn-success">Buy Now</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
