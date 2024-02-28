@@ -60,16 +60,17 @@ public class CartDao {
         }
     }
 
-    public void increaseQuantity(long userId, long menuItemId) throws ServletException {
+    public void updateQuantity(long userId, long menuItemId, int newQuantity) throws ServletException {
         String query = "update public.user_cart " +
-                "set quantity = quantity + 1 " +
+                "set quantity = ? " +
                 "where user_id = ? and menu_item_id = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement =
                      connection.prepareStatement(query)) {
 
-            preparedStatement.setLong(1, userId);
-            preparedStatement.setLong(2, menuItemId);
+            preparedStatement.setInt(1, newQuantity);
+            preparedStatement.setLong(2, userId);
+            preparedStatement.setLong(3, menuItemId);
             int rowsAffected = preparedStatement.executeUpdate();
 
             if (rowsAffected == 0) {
