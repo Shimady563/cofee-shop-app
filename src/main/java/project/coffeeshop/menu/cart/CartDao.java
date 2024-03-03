@@ -93,6 +93,7 @@ public class CartDao {
 
             preparedStatement.setLong(1, userId);
             preparedStatement.setLong(2, menuItemId);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new ServletException(e);
         }
