@@ -1,27 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Cart Item</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Cart Item</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" th:href="@{/css/navbar.css}">
 </head>
 <body>
-<th:block th:fragment="cartItem()">
-    <div class="d-flex align-items-center">
-        <img src="product1.jpg" alt="Product 1" class="img-thumbnail mr-3" style="width: 80px;">
-        <div>
-            <h5>Product 1</h5>
-            <p>Volume: 500ml</p>
-        </div>
-    </div>
-    <div class="quantity">
-        <a class="btn btn-outline-secondary btn-sm">-</a>
-        <span class="mx-2">1</span>
-        <a class="btn btn-outline-secondary btn-sm">+</a>
-    </div>
-    <span class="badge badge-primary badge-pill">$20.00</span>
-    <a class="btn btn-danger btn-sm">Remove</a>
+<th:block th:fragment="cartItemTemplate()">
+	<div class="d-flex align-items-center">
+		<img alt="Product" class="img-thumbnail mr-3" style="width: 80px;" th:src="@{'/' + ${cartItem.image}}">
+		<div>
+			<h5 th:utext="${cartItem.name}"></h5>
+			<p th:utext="${cartItem.volume + 'ml'}"></p>
+		</div>
+	</div>
+	<div class="quantity d-flex flex-row align-items-center flex-wrap">
+		<form method="post" th:action="@{/cart}">
+			<input type="hidden" name="cartItemId" th:value="${cartItem.id}">
+			<input type="hidden" name="action" value="decrease">
+			<input type="hidden" name="oldQuantity" th:value="${cartItem.quantity}">
+			<button type="submit" class="btn btn-outline-secondary btn-sm">-</button>
+		</form>
+		<span class="mx-2" th:utext="${cartItem.quantity}"></span>
+		<form method="post" th:action="@{/cart}">
+			<input type="hidden" name="cartItemId" th:value="${cartItem.id}">
+			<input type="hidden" name="action" value="increase">
+			<input type="hidden" name="oldQuantity" th:value="${cartItem.quantity}">
+			<button type="submit" class="btn btn-outline-secondary btn-sm">+</button>
+		</form>
+	</div>
+	<span class="badge badge-primary badge-pill" th:utext="${cartItem.price * cartItem.quantity + '$'}"></span>
+	<form method="post" th:action="@{/cart}">
+		<input type="hidden" name="cartItemId" th:value="${cartItem.id}">
+		<input type="hidden" name="action" value="remove">
+		<button type="submit" class="btn btn-danger btn-sm">Remove</button>
+	</form>
 </th:block>
 </body>
 </html>
