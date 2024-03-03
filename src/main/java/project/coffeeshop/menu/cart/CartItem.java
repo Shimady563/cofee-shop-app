@@ -7,7 +7,7 @@ import project.coffeeshop.menu.MenuItem;
 @Setter
 @ToString
 public class CartItem extends MenuItem {
-    int quantity;
+    private int quantity;
 
     public CartItem(long id, String name, double price, int volume, String image, int quantity) {
         super(id, name, price, volume, image);
