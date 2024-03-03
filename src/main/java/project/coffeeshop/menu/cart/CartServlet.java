@@ -11,6 +11,7 @@ import project.coffeeshop.authentication.SessionDao;
 import project.coffeeshop.commons.CoffeeShopServlet;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -39,9 +40,45 @@ public class CartServlet extends CoffeeShopServlet {
 
             if (sessionOptional.isPresent()) {
                 List<CartItem> cartItems = cartDao.findAll(sessionOptional.get().getUserId());
+                double overall = cartItems.stream().mapToDouble((item) -> (item.getQuantity() * item.getPrice())).sum();
                 webContext.setVariable("cartItems", cartItems);
+                webContext.setVariable("overall", overall);
                 templateEngine.process("cart", webContext, response.getWriter());
             }
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        int cartItemId = Integer.parseInt(request.getParameter("cartItemId"));
+        Cookie[] cookies = request.getCookies();
+        Optional<Cookie> cookieOptional = findCookieByName(cookies, "sessionId");
+
+        if (cookieOptional.isPresent()) {
+            Optional<Session> sessionOptional = sessionDao.findById(UUID.fromString(cookieOptional.get().getValue()));
+
+            if (sessionOptional.isPresent()) {
+                long userId = sessionOptional.get().getUserId();
+
+                switch (action) {
+                    case "decrease" -> {
+                        int newQuantity = Integer.parseInt(request.getParameter("oldQuantity")) - 1;
+                        if (newQuantity == 0) {
+                            cartDao.deleteItem(userId, cartItemId);
+                        } else {
+                            cartDao.updateQuantity(userId, cartItemId, newQuantity);
+                        }
+                    }
+                    case "increase" -> {
+                        int newQuantity = Integer.parseInt(request.getParameter("oldQuantity")) + 1;
+                        cartDao.updateQuantity(userId, cartItemId, newQuantity);
+                    }
+                    case "remove" -> cartDao.deleteItem(userId, cartItemId);
+                }
+            }
+        }
+
+        doGet(request, response);
     }
 }
