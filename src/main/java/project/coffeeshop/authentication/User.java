@@ -11,6 +11,7 @@ public class User {
     private long id;
     private String username;
     private String password;
+    private int points;
 
     public User(String username, String password) {
         this.username = username;
