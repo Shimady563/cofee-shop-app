@@ -1,45 +1,43 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Cart</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<link rel="stylesheet" th:href="@{/css/navbar.css}">
-	<style>
-		.message-container {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			height: 80vh;
-			text-align: center;
-			font-size: 30px;
-			font-weight: 600;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Cart</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/navbar.css}">
+    <style>
+        .message-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+            text-align: center;
+            font-size: 30px;
+            font-weight: 600;
+        }
+    </style>
 </head>
 <body>
 <th:block th:replace="~{navbar ::navbar('menu', 'favorites', 'news', 'cart')}"></th:block>
 <div></div>
 <div class="container mt-4">
-	<div class="message-container" th:if="${cartItems.isEmpty()}">
-		<p>There's nothing here yet, you can add items from the menu page</p>
-	</div>
-	<ul class="list-group">
-		<li class="list-group-item d-flex justify-content-between align-items-center" th:each="cartItem : ${cartItems}">
-			<th:block th:replace="cart-item ::cartItemTemplate()"></th:block>
-		</li>
-	</ul>
-	<div class="buy-container" th:unless="${cartItems.isEmpty()}">
-		<div class="mt-4">
-			<h4 th:utext="${'$' + overall}"></h4>
-		</div>
-		<div class="mt-4">
-			<form method="post" th:action="@{/purchase}">
-				<button type="button" class="btn btn-success">Buy Now</button>
-			</form>
-		</div>
-	</div>
+    <div class="message-container" th:if="${cartItems.isEmpty()}">
+        <p>There's nothing here yet, you can add items from the menu page</p>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center" th:each="cartItem : ${cartItems}">
+            <th:block th:replace="cart-item ::cartItemTemplate()"></th:block>
+        </li>
+    </ul>
+    <div class="buy-container" th:unless="${cartItems.isEmpty()}">
+        <div class="mt-4">
+            <h4 th:utext="${'$' + overall}"></h4>
+        </div>
+        <div class="mt-4">
+            <a class="btn btn-success" th:href="@{'/purchase?overall=' + ${overall}}">Buy Now</a>
+        </div>
+    </div>
 </div>
 </body>
 </html>
