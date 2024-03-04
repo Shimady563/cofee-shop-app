@@ -99,6 +99,21 @@ public class CartDao {
         }
     }
 
+    public void deleteAll(long userId) throws ServletException {
+        String query = "delete from public.user_cart " +
+                "where user_id = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement =
+                     connection.prepareStatement(query)) {
+
+            preparedStatement.setLong(1, userId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new ServletException(e);
+        }
+    }
+
+
     private boolean isAlreadyAdded(Connection connection, long userId, long menuItemId) throws ServletException {
         String query = "select 1 from public.user_cart " +
                 "where user_id = ? and menu_item_id = ?";
