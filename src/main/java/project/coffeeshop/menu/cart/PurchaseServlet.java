@@ -58,7 +58,7 @@ public class PurchaseServlet extends CoffeeShopServlet {
                     user.setPoints(user.getPoints() + pointsEarned);
                     cartDao.deleteAll(user.getId());
                     userDao.update(user.getId(), user.getPoints());
-                    //add request adding, redirection to page with success message
+                    //implement order creation, redirection to page with success message
                 }
             }
         }
