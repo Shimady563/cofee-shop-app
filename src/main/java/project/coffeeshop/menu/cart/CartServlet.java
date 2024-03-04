@@ -62,6 +62,12 @@ public class CartServlet extends CoffeeShopServlet {
                 long userId = sessionOptional.get().getUserId();
 
                 switch (action) {
+                    case "add" -> {
+                        cartDao.saveToCart(userId, cartItemId);
+
+                        response.sendRedirect(request.getParameter("path"));
+                        return;
+                    }
                     case "decrease" -> {
                         int newQuantity = Integer.parseInt(request.getParameter("oldQuantity")) - 1;
                         if (newQuantity == 0) {
