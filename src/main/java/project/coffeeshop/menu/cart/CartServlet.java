@@ -9,9 +9,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import project.coffeeshop.authentication.Session;
 import project.coffeeshop.authentication.SessionDao;
 import project.coffeeshop.commons.CoffeeShopServlet;
+import project.coffeeshop.menu.MenuItem;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -40,9 +42,15 @@ public class CartServlet extends CoffeeShopServlet {
 
             if (sessionOptional.isPresent()) {
                 List<CartItem> cartItems = cartDao.findAll(sessionOptional.get().getUserId());
+
+                //sorting the list so that after changing the quantity items doesn't rearrange
+                cartItems.sort(Comparator.comparing(MenuItem::getName).thenComparing(MenuItem::getVolume));
+
                 double overall = cartItems.stream().mapToDouble((item) -> (item.getQuantity() * item.getPrice())).sum();
                 webContext.setVariable("cartItems", cartItems);
-                webContext.setVariable("overall", overall);
+
+                //formatting to 2 digits after the decimal point
+                webContext.setVariable("overall", String.format("%.2f", overall));
                 templateEngine.process("cart", webContext, response.getWriter());
             }
         }
@@ -64,7 +72,6 @@ public class CartServlet extends CoffeeShopServlet {
                 switch (action) {
                     case "add" -> {
                         cartDao.saveToCart(userId, cartItemId);
-
                         response.sendRedirect(request.getParameter("path"));
                         return;
                     }
