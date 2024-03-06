@@ -13,6 +13,7 @@ import project.coffeeshop.authentication.UserDao;
 import project.coffeeshop.commons.CoffeeShopServlet;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -24,20 +25,15 @@ public class PurchaseServlet extends CoffeeShopServlet {
     private SessionDao sessionDao;
     private CartDao cartDao;
     private UserDao userDao;
+    private OrderDao orderDao;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         sessionDao = new SessionDao();
         cartDao = new CartDao();
         userDao = new UserDao();
+        orderDao = new OrderDao();
         super.init(config);
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        double overallPrice = Double.parseDouble(request.getParameter("overall"));
-        webContext.setVariable("overall", overallPrice);
-        templateEngine.process("purchase", webContext, response.getWriter());
     }
 
     @Override
@@ -54,13 +50,21 @@ public class PurchaseServlet extends CoffeeShopServlet {
 
                 if (userOptional.isPresent()) {
                     User user = userOptional.get();
+
+                    Order order = new Order(LocalDateTime.now(), LocalDateTime.now().minusMinutes(30), overallPrice);
+                    orderDao.save(user.getId(), order);
+
                     int pointsEarned = (int) overallPrice / 10;
                     user.setPoints(user.getPoints() + pointsEarned);
                     cartDao.deleteAll(user.getId());
                     userDao.update(user.getId(), user.getPoints());
-                    //implement order creation, redirection to page with success message
+
+                    webContext.setVariable("message", "Order was successfully created");
+                    templateEngine.process("purchase", webContext, response.getWriter());
                 }
             }
         }
+
+        throw new ServletException("Couldn't create and order");
     }
 }
