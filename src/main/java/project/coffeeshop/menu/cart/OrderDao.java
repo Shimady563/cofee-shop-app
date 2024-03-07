@@ -23,8 +23,9 @@ public class OrderDao {
     }
 
     public List<Order> findAll(long userId) throws ServletException {
-        String query = "select * from public.\"order\" " +
-                "where id = ?";
+        String query = "select a.* from public.\"order\" a " +
+                "join public.user_order b on a.id = b.order_id " +
+                "where b.user_id = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection
                      .prepareStatement(query)) {

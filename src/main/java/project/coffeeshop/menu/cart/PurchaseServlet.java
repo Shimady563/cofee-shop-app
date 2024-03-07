@@ -51,8 +51,9 @@ public class PurchaseServlet extends CoffeeShopServlet {
                 if (userOptional.isPresent()) {
                     User user = userOptional.get();
 
-                    Order order = new Order(LocalDateTime.now(), LocalDateTime.now().minusMinutes(30), overallPrice);
+                    Order order = new Order(LocalDateTime.now(), LocalDateTime.now().plusMinutes(10), overallPrice);
                     orderDao.save(user.getId(), order);
+                    cartDao.deleteAll(user.getId());
 
                     webContext.setVariable("message", "Order was successfully created");
                     templateEngine.process("purchase", webContext, response.getWriter());

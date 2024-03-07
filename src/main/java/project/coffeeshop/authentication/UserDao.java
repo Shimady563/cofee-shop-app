@@ -99,8 +99,7 @@ public class UserDao {
             long userId = resultSet.getLong(1);
             String username = resultSet.getString(2);
             String password = resultSet.getString(3);
-            int points = resultSet.getInt(4);
-            user = new User(userId, username, password, points);
+            user = new User(userId, username, password);
         }
 
         resultSet.close();
