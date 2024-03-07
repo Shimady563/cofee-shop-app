@@ -2,8 +2,6 @@
 
 ![Header home page image](./img/home-page.png)
 
-![Header profile page image](./img/profile-page.png)
-
 ![Header menu page image](./img/menu-page.png)
 
 ![Header favorites page image](./img/favorites-page.png)
@@ -12,27 +10,42 @@
 
 ![Header piece of news page image](./img/piece-of-news-page.png)
 
+![Header cart page image](./img/cart-page.png)
+
+![Header orders page image](./img/orders-page.png)
+
+
 ## Overview
 
-A web application of a coffee shop. User can register which allows
-to view and change his username and password, view coffee shop menu,
-save preferred menu items to favorites for easy access
-and read the news about the coffee shop and coffee related topics.
+A web application of a coffee shop. The features include: 
+Authorizing and add an account, which allows the use of general features,
+Viewing the menu items, adding them to the favorites for easy access,
+Adding items to the cart to buy them later,
+Creating an order, viewing all orders and their status,
+Reading the news about the coffee shop and coffee related topics.
 
 ## Future plans
 
-While I'm working on favorites and news, I also plan to
-implement purchase ability. It will include the ability to add
-items to cart and buy them. Also, there will be points system, which will
-allow users to receive points for purchases and spend them in the future.
+Although the application is fully functional, 
+there are some additional quality of life changes
+that can be made. They include code refactoring, and some optimization.
+I also plan to wrap the application in a docker container,
+and implement a CI/CD pipeline in the future, 
+as will learn those technologies.
+Additionally, I plan to port this application to spring and hibernate,
+to compare the two approaches. 
+This will also allow me to learn more about spring and hibernate.
+You can find the application in my repository [here](https://github.com/Shimady563/coffee-shop-app-spring)
 
 ## Technologies used
 
-For application logic I use java servlets.
+For application logic I use Java Servlets.
 
-For data access I use jdbc and postgres.
+For data access I use JDBC and Postgres.
 
-For interface I use bootstrap and thymeleaf
+For interface I use Bootstrap and Thymeleaf
+
+For test I use Junit and Mockito
 
 I chose servlets and jdbc instead of spring and hibernate
 because I wanted to learn more about their work, I think
