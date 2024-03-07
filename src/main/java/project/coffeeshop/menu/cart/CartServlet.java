@@ -46,11 +46,17 @@ public class CartServlet extends CoffeeShopServlet {
                 //sorting the list so that after changing the quantity items doesn't rearrange
                 cartItems.sort(Comparator.comparing(MenuItem::getName).thenComparing(MenuItem::getVolume));
 
-                double overall = cartItems.stream().mapToDouble((item) -> (item.getQuantity() * item.getPrice())).sum();
-                webContext.setVariable("cartItems", cartItems);
+                double overall = cartItems
+                        .stream()
+                        .mapToDouble((item) -> (item.getQuantity() * item.getPrice()))
+                        .sum();
 
-                //formatting to 2 digits after the decimal point
-                webContext.setVariable("overall", String.format("%.2f", overall));
+                //rounding to 2 digits after the decimal point
+                double scale = Math.pow(10, 2);
+                overall = Math.round(overall * scale) / scale;
+
+                webContext.setVariable("cartItems", cartItems);
+                webContext.setVariable("overall",  overall);
                 templateEngine.process("cart", webContext, response.getWriter());
             }
         }

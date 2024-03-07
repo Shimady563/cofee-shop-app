@@ -31,7 +31,7 @@
 			<button type="submit" class="btn btn-outline-secondary btn-sm">+</button>
 		</form>
 	</div>
-	<span class="badge badge-primary badge-pill" th:utext="${cartItem.price * cartItem.quantity + '$'}"></span>
+	<span class="badge badge-primary badge-pill" th:utext="${#numbers.formatDecimal(cartItem.price * cartItem.quantity, 1, 1) + '$'}"></span>
 	<form method="post" th:action="@{/cart}">
 		<input type="hidden" name="cartItemId" th:value="${cartItem.id}">
 		<input type="hidden" name="action" value="remove">
