@@ -51,7 +51,7 @@ public class UserDao {
     public Optional<User> findByUsername(String username) throws ServletException {
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection
-                     .prepareStatement("select id, username, password from public.\"user\" where username = ?")) {
+                     .prepareStatement("select * from public.\"user\" where username = ?")) {
 
             preparedStatement.setString(1, username);
             preparedStatement.executeQuery();
@@ -65,7 +65,7 @@ public class UserDao {
     public Optional<User> findById(Long id) throws ServletException {
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection
-                     .prepareStatement("select id, username, password from public.\"user\" where id = ?")) {
+                     .prepareStatement("select * from public.\"user\" where id = ?")) {
 
             preparedStatement.setLong(1, id);
             preparedStatement.executeQuery();

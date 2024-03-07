@@ -9,7 +9,7 @@
 	<link rel="stylesheet" th:href="@{/css/navbar.css}">
 </head>
 <body>
-<th:block th:replace="~{navbar ::navbar('profile', 'menu', 'favorites', 'news')}"></th:block>
+<th:block th:replace="~{navbar ::navbar('profile', 'menu', 'favorites', 'cart', 'news')}"></th:block>
 <div class="container mt-4">
 	<div class="row justify-content-center" th:if="${news.isEmpty()}">
 		<div class="message-container">

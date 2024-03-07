@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Orders</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" th:href="@{/css/navbar.css}">
+</head>
+<body>
+<th:block th:replace="~{navbar ::navbar('menu', 'favorites', 'news', 'cart', 'orders')}"></th:block>
+<div class="container mt-5">
+	<div class="card mt-3" th:each="order : ${orders}" th:with="status=${#temporals.createNow() > order.readyTime ? 'Ready' : 'In work'}">
+		<div class="card-body">
+			<h5 class="card-title" th:utext="${'Order #' + order.id}"></h5>
+			<p class="card-text"
+			   th:utext="${'Creation Time: ' + #temporals.format(order.creationTime, 'HH:mm, d MMMM yyyy')}"></p>
+			<p class="card-text" th:utext="${'Total Price: $' + order.price}"></p>
+			<p class="card-text"
+			   th:utext="${'Status: ' + status}"></p>
+			<form method="post" th:action="@{/orders}" th:if="${status eq 'Ready'}">
+				<input type="hidden" name="orderId" th:value="${order.id}">
+				<button type="submit" class="btn btn-danger btn-sm">Remove</button>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

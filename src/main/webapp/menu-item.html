@@ -20,11 +20,17 @@
 			<p class="item-cost" th:utext="${' $' + menuItem.price}"></p>
 			<form action="menu" method="post" th:if="${page eq 'menu'}">
 				<input type="hidden" name="menuItemId" th:value="${menuItem.id}">
-				<button type="submit" class="btn btn-primary item-add">Add to favorites</button>
+				<button type="submit" class="btn btn-primary item-add-fav">Add to favorites</button>
 			</form>
 			<form action="favorites" method="post" th:if="${page eq 'favorites'}">
 				<input type="hidden" name="menuItemId" th:value="${menuItem.id}">
 				<button type="submit" class="btn btn-primary item-remove">Remove</button>
+			</form>
+			<form action="cart" method="post">
+				<input type="hidden" name="cartItemId" th:value="${menuItem.id}">
+				<input type="hidden" name="action" value="add">
+				<input type="hidden" name="path" th:value="${page}">
+				<button type="submit" class="btn btn-primary item-add-cart">Add to Cart</button>
 			</form>
 		</div>
 	</div>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Purchase Successful</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" th:href="@{/css/navbar.css}">
+</head>
+<body>
+<th:block th:replace="~{navbar ::navbar('menu', 'favorites', 'news', 'profile', 'purchase')}"></th:block>
+<div class="container mt-5">
+	<div class="alert alert-success" role="alert">
+		<h4 class="alert-heading">Order Successfully Created!</h4>
+		<p>Your order has been processed successfully. Thank you for shopping with us!</p>
+		<hr>
+		<p class="mb-0">You can view your orders <a th:href="@{/orders}">here</a>.
+		</p>
+	</div>
+</div>
+</body>
+</html>
