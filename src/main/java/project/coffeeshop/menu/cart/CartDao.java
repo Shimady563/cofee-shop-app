@@ -1,7 +1,6 @@
 package project.coffeeshop.menu.cart;
 
 import jakarta.servlet.ServletException;
-import project.coffeeshop.menu.MenuItem;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;

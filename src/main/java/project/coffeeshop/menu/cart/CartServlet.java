@@ -12,7 +12,6 @@ import project.coffeeshop.commons.CoffeeShopServlet;
 import project.coffeeshop.menu.MenuItem;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
