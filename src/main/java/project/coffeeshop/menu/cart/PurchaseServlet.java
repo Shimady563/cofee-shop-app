@@ -54,17 +54,13 @@ public class PurchaseServlet extends CoffeeShopServlet {
                     Order order = new Order(LocalDateTime.now(), LocalDateTime.now().minusMinutes(30), overallPrice);
                     orderDao.save(user.getId(), order);
 
-                    int pointsEarned = (int) overallPrice / 10;
-                    user.setPoints(user.getPoints() + pointsEarned);
-                    cartDao.deleteAll(user.getId());
-                    userDao.update(user.getId(), user.getPoints());
-
                     webContext.setVariable("message", "Order was successfully created");
                     templateEngine.process("purchase", webContext, response.getWriter());
+                    return;
                 }
             }
         }
 
-        throw new ServletException("Couldn't create and order");
+        throw new ServletException("Couldn't create an order");
     }
 }
