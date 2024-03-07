@@ -88,4 +88,30 @@ public class OrderDao {
             throw new ServletException(e);
         }
     }
+
+    public void delete(long userId, long orderId) throws ServletException {
+        String deleteOrder = "delete from public.\"order\" where id = ?";
+        String deleteUserOrder = "delete from public.user_order where user_id = ? and order_id = ?";
+        try {
+            Connection connection = dataSource.getConnection();
+            connection.setAutoCommit(false);
+            try (PreparedStatement deleteOrderStatement = connection
+                    .prepareStatement(deleteOrder);
+                 PreparedStatement deleteUserOrderStatement = connection
+                         .prepareStatement(deleteUserOrder)) {
+
+                deleteUserOrderStatement.setLong(1, userId);
+                deleteUserOrderStatement.setLong(2, orderId);
+                deleteUserOrderStatement.executeUpdate();
+
+                deleteOrderStatement.setLong(1, orderId);
+                deleteOrderStatement.executeUpdate();
+                connection.commit();
+            } catch (SQLException e) {
+                throw new ServletException(e);
+            }
+        } catch (SQLException e) {
+            throw new ServletException(e);
+        }
+    }
 }
