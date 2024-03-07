@@ -5,9 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Purchase Successful</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" th:href="@{/css/navbar.css}">
 </head>
 <body>
-
+<th:block th:replace="~{navbar ::navbar('menu', 'favorites', 'news', 'profile', 'purchase')}"></th:block>
 <div class="container mt-5">
 	<div class="alert alert-success" role="alert">
 		<h4 class="alert-heading">Order Successfully Created!</h4>

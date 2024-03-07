@@ -10,7 +10,7 @@
 	<link rel="stylesheet" th:href="@{/css/menu-item.css}">
 </head>
 <body>
-<th:block th:replace="~{navbar ::navbar('profile', 'news', 'favorites', '')}"></th:block>
+<th:block th:replace="~{navbar ::navbar('profile', 'news', 'favorites', 'cart', 'menu')}"></th:block>
 <div class="container menu-container">
 	<th:block th:replace="~{menu-item ::menuItemTemplate('menu')}"></th:block>
 </div>

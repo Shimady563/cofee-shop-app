@@ -10,7 +10,7 @@
 	<link rel="stylesheet" th:href="@{/css/menu-item.css}">
 </head>
 <body>
-<th:block th:replace="~{navbar ::navbar('profile', 'news', 'menu', '')}"></th:block>
+<th:block th:replace="~{navbar ::navbar('profile', 'news', 'menu', 'cart', 'favorites')}"></th:block>
 <div class="container menu-container">
 	<div class="row justify-content-center" th:if="${menuItems.isEmpty()}">
 		<div class="message-container">

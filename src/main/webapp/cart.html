@@ -19,7 +19,7 @@
     </style>
 </head>
 <body>
-<th:block th:replace="~{navbar ::navbar('menu', 'favorites', 'news', 'cart')}"></th:block>
+<th:block th:replace="~{navbar ::navbar('menu', 'favorites', 'news', 'profile', 'cart')}"></th:block>
 <div></div>
 <div class="container mt-4">
     <div class="message-container" th:if="${cartItems.isEmpty()}">

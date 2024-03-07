@@ -7,7 +7,7 @@
 	<link rel="stylesheet" th:href="@{/css/navbar.css}">
 </head>
 <body>
-<nav class="navbar navbar-expand" th:fragment="navbar(page1, page2, page3, curPage)">
+<nav class="navbar navbar-expand" th:fragment="navbar(page1, page2, page3, page4, curPage)">
 	<h1><a class="navbar-brand" th:href="@{/home}">Coffee Shop</a></h1>
 	<div class="navbar-collapse justify-content-center m-md-2" id="navbarNav"
 	     th:unless="${curPage eq 'profile' || curPage eq 'auth'}">
@@ -20,6 +20,9 @@
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" th:href="@{'/' + ${page3}}" th:utext="${#strings.capitalize(page3)}"></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{'/' + ${page4}}" th:utext="${#strings.capitalize(page4)}"></a>
 			</li>
 		</ul>
 	</div>
