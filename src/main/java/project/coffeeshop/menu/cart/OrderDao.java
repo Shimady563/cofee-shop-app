@@ -55,8 +55,9 @@ public class OrderDao {
         String saveUserOrder = "insert into public.user_order (user_id, order_id) " +
                 "values (?, ?)";
         try (Connection connection = dataSource.getConnection()) {
+            connection.setAutoCommit(false);
             try (PreparedStatement saveOrderStatement = connection
-                    .prepareStatement(saveOrder);
+                    .prepareStatement(saveOrder, PreparedStatement.RETURN_GENERATED_KEYS);
                  PreparedStatement saveUserOrderStatement = connection
                          .prepareStatement(saveUserOrder)) {
 
