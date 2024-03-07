@@ -41,8 +41,11 @@ public class OrderServlet extends CoffeeShopServlet {
                 List<Order> orders = orderDao.findAll(sessionOptional.get().getUserId());
                 webContext.setVariable("orders", orders);
                 templateEngine.process("orders", webContext, response.getWriter());
+                return;
             }
         }
+
+        throw new ServletException("Failed to load orders");
     }
 
     @Override
@@ -57,7 +60,10 @@ public class OrderServlet extends CoffeeShopServlet {
             if (sessionOptional.isPresent()) {
                 orderDao.delete(sessionOptional.get().getUserId(), orderId);
                 response.sendRedirect(request.getContextPath() + "/orders");
+                return;
             }
         }
+
+        throw new ServletException("Failed to delete order");
     }
 }

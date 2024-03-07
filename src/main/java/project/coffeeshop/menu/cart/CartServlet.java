@@ -58,14 +58,17 @@ public class CartServlet extends CoffeeShopServlet {
                 webContext.setVariable("cartItems", cartItems);
                 webContext.setVariable("overall",  overall);
                 templateEngine.process("cart", webContext, response.getWriter());
+                return;
             }
         }
+
+        throw new ServletException("Failed to load cart items");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        int cartItemId = Integer.parseInt(request.getParameter("cartItemId"));
+        long cartItemId = Integer.parseInt(request.getParameter("cartItemId"));
         Cookie[] cookies = request.getCookies();
         Optional<Cookie> cookieOptional = findCookieByName(cookies, "sessionId");
 
@@ -98,6 +101,6 @@ public class CartServlet extends CoffeeShopServlet {
             }
         }
 
-        doGet(request, response);
+        response.sendRedirect(request.getContextPath() + "/cart");
     }
 }

@@ -55,7 +55,6 @@ public class PurchaseServlet extends CoffeeShopServlet {
                     orderDao.save(user.getId(), order);
                     cartDao.deleteAll(user.getId());
 
-                    webContext.setVariable("message", "Order was successfully created");
                     templateEngine.process("purchase", webContext, response.getWriter());
                     return;
                 }
