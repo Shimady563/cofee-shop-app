@@ -5,13 +5,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Menu</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<link rel="stylesheet" th:href="@{/css/menu.css}">
 	<link rel="stylesheet" th:href="@{/css/navbar.css}">
 	<link rel="stylesheet" th:href="@{/css/menu-item.css}">
 </head>
 <body>
 <th:block th:replace="~{navbar ::navbar('profile', 'news', 'favorites', 'cart', 'menu')}"></th:block>
-<div class="container menu-container">
+<div class="container menu-container" style="margin-top: 30px">
 	<th:block th:replace="~{menu-item ::menuItemTemplate('menu')}"></th:block>
 </div>
 </body>
