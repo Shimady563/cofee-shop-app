@@ -93,22 +93,6 @@ public class UserDao {
         }
     }
 
-    public void update(long userId, int points) throws ServletException {
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection
-                     .prepareStatement("update public.\"user\" " +
-                             "set points = ? " +
-                             "where id = ?")) {
-
-            preparedStatement.setInt(1, points);
-            preparedStatement.setLong(2, userId);
-            preparedStatement.executeUpdate();
-
-        } catch (SQLException e) {
-            throw new ServletException(e);
-        }
-    }
-
     private Optional<User> getUser(ResultSet resultSet) throws SQLException {
         User user = null;
         while (resultSet.next()) {
