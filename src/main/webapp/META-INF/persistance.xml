@@ -1,0 +1,23 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="2.0">
+    <persistence-unit name="coffeeshopPersistenceUnit">
+        <class>project.coffeeshop.authentication.User</class>
+        <class>project.coffeeshop.authentication.Session</class>
+        <class>project.coffeeshop.menu.MenuItem</class>
+        <class>project.coffeeshop.menu.cart.Order</class>
+
+        <properties>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/coffee_shop"/>
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="jakarta.persistence.jdbc.user" value="coffeeshop"/>
+            <property name="jakarta.persistence.jdbc.password" value="coffeeshop"/>
+            <property name="jakarta.persistence.schema-generation.database.action" value="create"/>
+
+            <property name="hibernate.show-sql" value="true"/>
+            <property name="hibernate.format-sql" value="true"/>
+            <property name="hibernate.highlight-sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
