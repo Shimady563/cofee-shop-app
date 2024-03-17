@@ -26,15 +26,17 @@ Reading the news about the coffee shop and coffee related topics.
 
 ## Future plans
 
+Now I'm working on porting data model to hibernate,
+which you can see in the branch `feature/hibernate`.
 Although the application is fully functional, 
 there are some additional quality of life changes
 that can be made. They include code refactoring, and some optimization.
 I also plan to wrap the application in a docker container,
 and implement a CI/CD pipeline in the future, 
 as will learn those technologies.
-Additionally, I plan to port this application to spring and hibernate,
+Additionally, I plan to port this application to spring,
 to compare the two approaches. 
-This will also allow me to learn more about spring and hibernate.
+This will also allow me to learn more about spring.
 You can find the application in my repository [here](https://github.com/Shimady563/coffee-shop-app-spring)
 
 ## Technologies used
