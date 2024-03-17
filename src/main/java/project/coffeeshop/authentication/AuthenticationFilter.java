@@ -30,18 +30,12 @@ public class AuthenticationFilter extends HttpFilter {
         Optional<Cookie> cookieOptional = findCookieByName(cookies, "sessionId");
 
         if (cookieOptional.isPresent()) {
-            try {
-                Optional<Session> sessionOptional = sessionDao.findById(UUID.fromString(cookieOptional.get().getValue()));
+            Optional<Session> sessionOptional = sessionDao.findById(UUID.fromString(cookieOptional.get().getValue()));
 
-                if (sessionOptional.isPresent() && isValidSession(sessionOptional.get(), LocalDateTime.now())) {
-                    Optional<String> path = Optional.ofNullable((String) getServletContext().getAttribute("path"));
-                    response.sendRedirect(request.getContextPath() + (path.orElse("/profile")));
-                    return;
-                }
-            } catch (ServletException e) {
-                System.err.println(e.getMessage());
-                getServletContext().setAttribute("path", parsePath(request.getHeader("referer")));
-                response.sendRedirect(request.getContextPath() + "/error");
+            if (sessionOptional.isPresent() && isValidSession(sessionOptional.get(), LocalDateTime.now())) {
+                Optional<String> path = Optional.ofNullable((String) getServletContext().getAttribute("path"));
+                response.sendRedirect(request.getContextPath() + (path.orElse("/profile")));
+                return;
             }
         }
 

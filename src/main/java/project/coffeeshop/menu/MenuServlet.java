@@ -49,7 +49,7 @@ public class MenuServlet extends CoffeeShopServlet {
             Optional<Session> sessionOptional = sessionDao.findById(UUID.fromString(cookieOptional.get().getValue()));
 
             if (sessionOptional.isPresent()) {
-                menuDao.saveToFavorites(sessionOptional.get().getUserId(), menuItemId);
+                menuDao.saveToFavorites(sessionOptional.get().getUser().getId(), menuItemId);
                 webContext.setVariable("itemId", menuItemId);
                 webContext.setVariable("message", "Added to favorites");
             }

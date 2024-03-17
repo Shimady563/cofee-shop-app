@@ -38,7 +38,7 @@ public class FavoritesServlet extends CoffeeShopServlet {
             Optional<Session> sessionOptional = sessionDao.findById(UUID.fromString(cookieOptional.get().getValue()));
 
             if (sessionOptional.isPresent()) {
-                List<MenuItem> menuItems = menuDao.findByUserId(sessionOptional.get().getUserId());
+                List<MenuItem> menuItems = menuDao.findByUserId(sessionOptional.get().getUser().getId());
 
                 webContext.setVariable("menuItems", menuItems);
                 templateEngine.process("favorites", webContext, response.getWriter());
@@ -59,7 +59,7 @@ public class FavoritesServlet extends CoffeeShopServlet {
             Optional<Session> sessionOptional = sessionDao.findById(UUID.fromString(cookieOptional.get().getValue()));
 
             if (sessionOptional.isPresent()) {
-                menuDao.deleteUserFavorites(sessionOptional.get().getUserId(), menuItemId);
+                menuDao.deleteUserFavorites(sessionOptional.get().getUser().getId(), menuItemId);
             }
         }
 

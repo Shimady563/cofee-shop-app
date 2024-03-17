@@ -40,7 +40,7 @@ public class CartServlet extends CoffeeShopServlet {
             Optional<Session> sessionOptional = sessionDao.findById(UUID.fromString(cookieOptional.get().getValue()));
 
             if (sessionOptional.isPresent()) {
-                List<CartItem> cartItems = cartDao.findAll(sessionOptional.get().getUserId());
+                List<CartItem> cartItems = cartDao.findAll(sessionOptional.get().getUser().getId());
 
                 //sorting the list so that after changing the quantity items doesn't rearrange
                 cartItems.sort(Comparator.comparing(MenuItem::getName).thenComparing(MenuItem::getVolume));
@@ -75,7 +75,7 @@ public class CartServlet extends CoffeeShopServlet {
             Optional<Session> sessionOptional = sessionDao.findById(UUID.fromString(cookieOptional.get().getValue()));
 
             if (sessionOptional.isPresent()) {
-                long userId = sessionOptional.get().getUserId();
+                long userId = sessionOptional.get().getUser().getId();
 
                 switch (action) {
                     case "add" -> {

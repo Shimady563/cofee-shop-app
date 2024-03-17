@@ -53,7 +53,7 @@ public class SignInServlet extends CoffeeShopServlet {
         }
 
         UUID sessionId = UUID.randomUUID();
-        Session session = new Session(sessionId, user.getId(), LocalDateTime.now().plusHours(6));
+        Session session = new Session(sessionId, LocalDateTime.now().plusHours(6), user);
         sessionDao.save(session);
         Cookie sessionCookie = new Cookie("sessionId", sessionId.toString());
         sessionCookie.setMaxAge(6*60*60);

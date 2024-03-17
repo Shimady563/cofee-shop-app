@@ -58,15 +58,8 @@ public class SignUpServlet extends CoffeeShopServlet {
         }
 
         User user = new User(username, SCryptUtil.scrypt(password, 16, 16, 16));
-        long userId = userDao.save(user);
-        if (userId == -1) {
-            userId = userDao.findByUsername(username)
-                    .orElseThrow(() -> new ServletException("Error occurred while saving user"))
-                    .getId();
-        }
-
         UUID sessionId = UUID.randomUUID();
-        Session session = new Session(sessionId, userId, LocalDateTime.now().plusHours(6));
+        Session session = new Session(sessionId, LocalDateTime.now().plusHours(6), user);
         sessionDao.save(session);
         Cookie sessionCookie = new Cookie("sessionId", sessionId.toString());
         sessionCookie.setMaxAge(6*60*60);

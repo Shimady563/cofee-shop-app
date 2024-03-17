@@ -38,7 +38,7 @@ public class OrderServlet extends CoffeeShopServlet {
             Optional<Session> sessionOptional = sessionDao.findById(UUID.fromString(cookieOptional.get().getValue()));
 
             if (sessionOptional.isPresent()) {
-                List<Order> orders = orderDao.findAll(sessionOptional.get().getUserId());
+                List<Order> orders = orderDao.findAll(sessionOptional.get().getUser().getId());
                 webContext.setVariable("orders", orders);
                 templateEngine.process("orders", webContext, response.getWriter());
                 return;
@@ -58,7 +58,7 @@ public class OrderServlet extends CoffeeShopServlet {
             Optional<Session> sessionOptional = sessionDao.findById(UUID.fromString(cookieOptional.get().getValue()));
 
             if (sessionOptional.isPresent()) {
-                orderDao.delete(sessionOptional.get().getUserId(), orderId);
+                orderDao.delete(sessionOptional.get().getUser().getId(), orderId);
                 response.sendRedirect(request.getContextPath() + "/orders");
                 return;
             }

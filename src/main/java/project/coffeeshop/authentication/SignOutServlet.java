@@ -33,9 +33,12 @@ public class SignOutServlet extends CoffeeShopServlet {
             Cookie sessionCookie = cookieOptional.get();
             UUID sessionId = UUID.fromString(sessionCookie.getValue());
 
-            sessionDao.delete(sessionId);
-            sessionCookie.setMaxAge(0);
-            response.addCookie(sessionCookie);
+            Optional<Session> sessionOptional = sessionDao.findById(sessionId);
+            if (sessionOptional.isPresent()) {
+                sessionDao.delete(sessionOptional.get());
+                sessionCookie.setMaxAge(0);
+                response.addCookie(sessionCookie);
+            }
         }
 
         response.sendRedirect(request.getContextPath() + "/home");

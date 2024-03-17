@@ -39,8 +39,8 @@ public class ProfileServlet extends CoffeeShopServlet {
 
             Optional<Session> sessionOptional = sessionDao.findById(sessionId);
 
-            if (sessionOptional.isPresent() && isValidSession(sessionOptional.get(), LocalDateTime.now())) {
-                Optional<User> userOptional = userDao.findById(sessionOptional.get().getUserId());
+            if (sessionOptional.isPresent()) {
+                Optional<User> userOptional = userDao.findById(sessionOptional.get().getUser().getId());
                 userOptional.ifPresent(user -> webContext.setVariable("username", user.getUsername()));
             }
         }
@@ -71,7 +71,7 @@ public class ProfileServlet extends CoffeeShopServlet {
             Optional<Session> sessionOptional = sessionDao.findById(sessionId);
 
             if (sessionOptional.isPresent() && isValidSession(sessionOptional.get(), LocalDateTime.now())) {
-                Optional<User> userOptional = userDao.findById(sessionOptional.get().getUserId());
+                Optional<User> userOptional = userDao.findById(sessionOptional.get().getUser().getId());
 
                 if (userOptional.isPresent()) {
                     User user = userOptional.get();

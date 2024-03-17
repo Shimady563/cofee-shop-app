@@ -45,7 +45,7 @@ public class PurchaseServlet extends CoffeeShopServlet {
             Optional<Session> sessionOptional = sessionDao.findById(UUID.fromString(cookieOptional.get().getValue()));
 
             if (sessionOptional.isPresent()) {
-                Optional<User> userOptional = userDao.findById(sessionOptional.get().getUserId());
+                Optional<User> userOptional = userDao.findById(sessionOptional.get().getUser().getId());
 
                 if (userOptional.isPresent()) {
                     User user = userOptional.get();

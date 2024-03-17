@@ -44,7 +44,7 @@ public class HomeServlet extends CoffeeShopServlet {
             if (sessionOptional.isPresent() && isValidSession(sessionOptional.get(), LocalDateTime.now())) {
                 webContext.setVariable("auth", true);
 
-                Optional<User> userOptional = userDao.findById(sessionOptional.get().getUserId());
+                Optional<User> userOptional = userDao.findById(sessionOptional.get().getUser().getId());
                 userOptional.ifPresent((user -> webContext.setVariable("username", user.getUsername())));
             }
         }
