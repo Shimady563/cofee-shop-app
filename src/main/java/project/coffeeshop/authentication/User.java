@@ -1,15 +1,28 @@
 package project.coffeeshop.authentication;
 
-import lombok.*;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
-@ToString
+
+@Entity
+@Table(name = "users", indexes = {
+        @Index(name = "i_user_username", columnList = "username")
+})
 public class User {
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Setter
+    @Column(name = "username", nullable = false)
     private String username;
+
+    @Setter
+    @Column(name = "password", nullable = false)
     private String password;
 
     public User(String username, String password) {
