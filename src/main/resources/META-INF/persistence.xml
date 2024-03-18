@@ -14,7 +14,7 @@
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="jakarta.persistence.jdbc.user" value="coffeeshop"/>
             <property name="jakarta.persistence.jdbc.password" value="coffeeshop"/>
-            <property name="jakarta.persistence.schema-generation.database.action" value="create"/>
+            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
 
             <property name="hibernate.show-sql" value="true"/>
             <property name="hibernate.format-sql" value="true"/>
