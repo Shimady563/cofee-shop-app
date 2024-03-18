@@ -22,7 +22,9 @@ public class Session {
     @Setter
     private LocalDateTime expirationTime;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = {
+            CascadeType.PERSIST, CascadeType.MERGE
+    })
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 }
