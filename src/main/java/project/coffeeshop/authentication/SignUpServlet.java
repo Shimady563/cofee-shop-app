@@ -58,6 +58,7 @@ public class SignUpServlet extends CoffeeShopServlet {
         }
 
         User user = new User(username, SCryptUtil.scrypt(password, 16, 16, 16));
+        userDao.save(user);
         UUID sessionId = UUID.randomUUID();
         Session session = new Session(sessionId, LocalDateTime.now().plusHours(6), user);
         sessionDao.save(session);
