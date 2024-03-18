@@ -21,6 +21,7 @@ public abstract class AbstractDao<T, ID> {
             transaction.begin();
 
             entityManager.persist(entity);
+            entityManager.flush();
 
             transaction.commit();
         } catch (Exception e) {
@@ -36,6 +37,7 @@ public abstract class AbstractDao<T, ID> {
             transaction.begin();
 
             entityManager.remove(entity);
+            entityManager.flush();
 
             transaction.commit();
         } catch (Exception e) {

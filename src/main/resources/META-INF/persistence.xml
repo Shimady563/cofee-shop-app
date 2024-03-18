@@ -15,7 +15,6 @@
             <property name="jakarta.persistence.jdbc.user" value="coffeeshop"/>
             <property name="jakarta.persistence.jdbc.password" value="coffeeshop"/>
 
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
             <property name="hibernate.show-sql" value="true"/>
             <property name="hibernate.format-sql" value="true"/>
             <property name="hibernate.highlight-sql" value="true"/>

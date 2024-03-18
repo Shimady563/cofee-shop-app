@@ -20,6 +20,7 @@ public class UserDao extends AbstractDao<User, Long> {
             transaction.begin();
 
             entityManager.merge(user);
+            entityManager.flush();
 
             transaction.commit();
         } catch (Exception e) {

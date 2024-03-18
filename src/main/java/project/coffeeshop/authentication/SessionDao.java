@@ -1,5 +1,7 @@
 package project.coffeeshop.authentication;
 
+import jakarta.persistence.EntityTransaction;
+import jakarta.servlet.ServletException;
 import project.coffeeshop.commons.AbstractDao;
 
 import java.time.LocalDateTime;
@@ -13,11 +15,23 @@ public class SessionDao extends AbstractDao<Session, UUID> {
     }
 
     public void deleteExpiredSessions(LocalDateTime now) {
-        entityManager
-                .createQuery("delete from Session " +
-                        "where expirationTime < :time")
-                .setParameter("time", now)
-                .executeUpdate();
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+
+            entityManager
+                    .createQuery("delete from Session " +
+                            "where expirationTime < :time")
+                    .setParameter("time", now)
+                    .executeUpdate();
+            entityManager.flush();
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+        }
     }
 }
 
