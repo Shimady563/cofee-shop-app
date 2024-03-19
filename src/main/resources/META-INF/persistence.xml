@@ -8,6 +8,7 @@
         <class>project.coffeeshop.authentication.Session</class>
         <class>project.coffeeshop.menu.MenuItem</class>
         <class>project.coffeeshop.menu.cart.Order</class>
+        <class>project.coffeeshop.news.PieceOfNews</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/coffee_shop"/>
@@ -15,6 +16,7 @@
             <property name="jakarta.persistence.jdbc.user" value="coffeeshop"/>
             <property name="jakarta.persistence.jdbc.password" value="coffeeshop"/>
 
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show-sql" value="true"/>
             <property name="hibernate.format-sql" value="true"/>
             <property name="hibernate.highlight-sql" value="true"/>
