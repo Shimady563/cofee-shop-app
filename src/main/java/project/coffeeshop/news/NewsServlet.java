@@ -31,7 +31,7 @@ public class NewsServlet extends CoffeeShopServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestText = request.getParameter("requestText");
-        List<PieceOfNews> news = newsDao.searchByTitle(requestText);
+        List<PieceOfNews> news = newsDao.findByTitle(requestText);
 
         webContext.setVariable("news", news);
         templateEngine.process("news", webContext, response.getWriter());

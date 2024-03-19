@@ -1,18 +1,42 @@
 package project.coffeeshop.news;
 
-import lombok.*;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
-@ToString
+@Entity
+@Table(name = "news")
 public class PieceOfNews {
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "title", nullable = false)
     private String title;
+
+    @Column(name = "creation_date", nullable = false)
     private LocalDateTime creationDate;
+
+    @Column(name = "image", nullable = false)
     private String image;
+
+    @Column(name = "article", nullable = false)
     private String article;
 }
+
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Getter
+//@Setter
+//@ToString
+//public class PieceOfNews {
+//    private long id;
+//    private String title;
+//    private LocalDateTime creationDate;
+//    private String image;
+//    private String article;
+//}

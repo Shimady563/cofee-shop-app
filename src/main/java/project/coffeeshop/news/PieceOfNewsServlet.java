@@ -24,7 +24,7 @@ public class PieceOfNewsServlet extends CoffeeShopServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long pieceOfNewsId = Long.parseLong(request.getParameter("id"));
-        Optional<PieceOfNews> pieceOfNewsOptional = newsDao.getById(pieceOfNewsId);
+        Optional<PieceOfNews> pieceOfNewsOptional = newsDao.findById(pieceOfNewsId);
 
         pieceOfNewsOptional.ifPresent(pieceOfNews -> {
             webContext.setVariable("pieceOfNews", pieceOfNews);
