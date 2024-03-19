@@ -2,13 +2,9 @@ package project.coffeeshop.authentication;
 
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebListener;
-import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.*;
 
 @WebListener
