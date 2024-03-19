@@ -8,6 +8,7 @@
         <class>project.coffeeshop.authentication.Session</class>
         <class>project.coffeeshop.menu.MenuItem</class>
         <class>project.coffeeshop.menu.cart.Order</class>
+        <class>project.coffeeshop.news.PieceOfNews</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:mem:test"/>
