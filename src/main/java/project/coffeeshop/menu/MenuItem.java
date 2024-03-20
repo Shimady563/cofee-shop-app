@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import project.coffeeshop.authentication.User;
 
+import java.util.Objects;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -28,22 +29,19 @@ public class MenuItem {
     @Column(name = "image", nullable = false)
     private String image;
 
-    @ManyToMany(mappedBy = "menuItems", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "user_menu_item",
-            joinColumns = @JoinColumn(name = "menu_item_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @ManyToMany(mappedBy = "favorites", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<User> users;
-}
 
-//@AllArgsConstructor
-//@NoArgsConstructor
-//@Getter
-//@Setter
-//@ToString
-//public class MenuItem {
-//    private long id;
-//    private String name;
-//    private double price;
-//    private int volume;
-//    private String image;
-//}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MenuItem menuItem = (MenuItem) o;
+        return Double.compare(price, menuItem.price) == 0 && volume == menuItem.volume && Objects.equals(id, menuItem.id) && Objects.equals(name, menuItem.name) && Objects.equals(image, menuItem.image);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, price, volume, image);
+    }
+}

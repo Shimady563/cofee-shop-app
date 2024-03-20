@@ -32,10 +32,18 @@ public class User {
     @JoinTable(name = "user_menu_item",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "menu_item_id"))
-    private Set<MenuItem> menuItems;
+    private Set<MenuItem> favorites;
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public void addToFavorites(MenuItem menuItem) {
+        favorites.add(menuItem);
+    }
+
+    public void removeFromFavorites(MenuItem menuItem) {
+        favorites.remove(menuItem);
     }
 }
