@@ -25,7 +25,7 @@
 		</form>
 		<span class="mx-2" th:utext="${cartItem.quantity}"></span>
 		<form method="post" th:action="@{/cart}">
-			<input type="hidden" name="cartItemId" th:value="${cartItem.id}">
+			<input type="hidden" name="cartItemId" th:value="${cartItem.menuItem.id}">
 			<input type="hidden" name="action" value="increase">
 			<input type="hidden" name="oldQuantity" th:value="${cartItem.quantity}">
 			<button type="submit" class="btn btn-outline-secondary btn-sm">+</button>
