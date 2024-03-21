@@ -8,7 +8,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import project.coffeeshop.authentication.Session;
 import project.coffeeshop.authentication.SessionDao;
+import project.coffeeshop.authentication.User;
 import project.coffeeshop.commons.CoffeeShopServlet;
+import project.coffeeshop.menu.MenuDao;
 import project.coffeeshop.menu.MenuItem;
 
 import java.io.IOException;
@@ -23,6 +25,7 @@ import static project.coffeeshop.commons.ServletUtil.findCookieByName;
 public class CartServlet extends CoffeeShopServlet {
     private SessionDao sessionDao;
     private CartDao cartDao;
+    private final MenuDao menuDao = new MenuDao();
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -40,14 +43,11 @@ public class CartServlet extends CoffeeShopServlet {
             Optional<Session> sessionOptional = sessionDao.findById(UUID.fromString(cookieOptional.get().getValue()));
 
             if (sessionOptional.isPresent()) {
-                List<CartItem> cartItems = cartDao.findAll(sessionOptional.get().getUser().getId());
-
-                //sorting the list so that after changing the quantity items doesn't rearrange
-                cartItems.sort(Comparator.comparing(MenuItem::getName).thenComparing(MenuItem::getVolume));
+                List<UserCart> cartItems = cartDao.findByUser(sessionOptional.get().getUser());
 
                 double overall = cartItems
                         .stream()
-                        .mapToDouble((item) -> (item.getQuantity() * item.getPrice()))
+                        .mapToDouble((item) -> (item.getQuantity() * item.getMenuItem().getPrice()))
                         .sum();
 
                 //rounding to 2 digits after the decimal point
@@ -55,7 +55,7 @@ public class CartServlet extends CoffeeShopServlet {
                 overall = Math.round(overall * scale) / scale;
 
                 webContext.setVariable("cartItems", cartItems);
-                webContext.setVariable("overall",  overall);
+                webContext.setVariable("overall", overall);
                 templateEngine.process("cart", webContext, response.getWriter());
                 return;
             }
@@ -75,27 +75,37 @@ public class CartServlet extends CoffeeShopServlet {
             Optional<Session> sessionOptional = sessionDao.findById(UUID.fromString(cookieOptional.get().getValue()));
 
             if (sessionOptional.isPresent()) {
-                long userId = sessionOptional.get().getUser().getId();
+                User user = sessionOptional.get().getUser();
+                Optional<MenuItem> menuItemOptional = menuDao.findById(cartItemId);
 
-                switch (action) {
-                    case "add" -> {
-                        cartDao.saveToCart(userId, cartItemId);
-                        response.sendRedirect(request.getParameter("path"));
-                        return;
-                    }
-                    case "decrease" -> {
-                        int newQuantity = Integer.parseInt(request.getParameter("oldQuantity")) - 1;
-                        if (newQuantity == 0) {
-                            cartDao.deleteItem(userId, cartItemId);
-                        } else {
-                            cartDao.updateQuantity(userId, cartItemId, newQuantity);
+                if (menuItemOptional.isPresent()) {
+                    MenuItem menuItem = menuItemOptional.get();
+                    UserCart userCart = new UserCart(user, menuItem);
+
+                    switch (action) {
+                        case "add" -> {
+                            cartDao.save(userCart);
+                            response.sendRedirect(request.getParameter("path"));
+                            return;
                         }
+                        case "decrease" -> {
+                            int newQuantity = Integer.parseInt(request.getParameter("oldQuantity")) - 1;
+                            if (newQuantity == 0) {
+                                cartDao.deleteByUserAndItem(user, menuItem);
+                            } else {
+                                userCart.setQuantity(newQuantity);
+                                cartDao.update(userCart);
+                            }
+                        }
+                        case "increase" -> {
+                            int newQuantity = Integer.parseInt(request.getParameter("oldQuantity")) + 1;
+                            userCart.setQuantity(newQuantity);
+                            System.out.println(1);
+                            cartDao.update(userCart);
+                        }
+
+                        case "remove" -> cartDao.deleteByUserAndItem(user, menuItem);
                     }
-                    case "increase" -> {
-                        int newQuantity = Integer.parseInt(request.getParameter("oldQuantity")) + 1;
-                        cartDao.updateQuantity(userId, cartItemId, newQuantity);
-                    }
-                    case "remove" -> cartDao.deleteItem(userId, cartItemId);
                 }
             }
         }

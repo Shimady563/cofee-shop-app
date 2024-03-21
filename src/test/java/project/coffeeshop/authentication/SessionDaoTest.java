@@ -3,6 +3,7 @@ package project.coffeeshop.authentication;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.servlet.ServletException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,7 @@ public class SessionDaoTest {
     }
 
     @BeforeEach
-    public void setUp() throws NoSuchFieldException, IllegalAccessException {
+    public void setUp() throws NoSuchFieldException, IllegalAccessException, ServletException {
         Field entityManagerSessionDaoField = sessionDao.getClass().getSuperclass().getDeclaredField("entityManager");
         entityManagerSessionDaoField.setAccessible(true);
         entityManagerSessionDaoField.set(sessionDao, entityManager);
@@ -42,7 +43,7 @@ public class SessionDaoTest {
     }
 
     @Test
-    public void testSave() {
+    public void testSave() throws ServletException {
         UUID sessionId = UUID.randomUUID();
         Session session = new Session(sessionId, LocalDateTime.now(), user);
         sessionDao.save(session);
@@ -51,7 +52,7 @@ public class SessionDaoTest {
     }
 
     @Test
-    public void testFindById() {
+    public void testFindById() throws ServletException {
         UUID sessionId = UUID.randomUUID();
         Session session = new Session(sessionId, LocalDateTime.now(), user);
         sessionDao.save(session);
@@ -63,7 +64,7 @@ public class SessionDaoTest {
     }
 
     @Test
-    public void testDelete() {
+    public void testDelete() throws ServletException {
         UUID sessionId = UUID.randomUUID();
         Session session = new Session(sessionId, LocalDateTime.now(), user);
         sessionDao.save(session);
@@ -74,7 +75,7 @@ public class SessionDaoTest {
     }
 
     @Test
-    public void testDeleteExpired() {
+    public void testDeleteExpired() throws ServletException {
         UUID id1 = UUID.randomUUID();
         UUID id2 = UUID.randomUUID();
         Session session1 = new Session(id1, LocalDateTime.now(), user);

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import project.coffeeshop.menu.MenuItem;
+import project.coffeeshop.menu.cart.Order;
 
 import java.util.Set;
 
@@ -34,6 +35,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "menu_item_id"))
     private Set<MenuItem> favorites;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Order> orders;
+
     public User(String username, String password) {
         this.username = username;
         this.password = password;
@@ -45,5 +49,13 @@ public class User {
 
     public void removeFromFavorites(MenuItem menuItem) {
         favorites.remove(menuItem);
+    }
+
+    public void addOrder(Order order) {
+        orders.add(order);
+    }
+
+    public void removeOrder(Order order) {
+        orders.remove(order);
     }
 }

@@ -31,7 +31,7 @@ public class UserDaoTest {
     }
 
     @Test
-    public void testSave() {
+    public void testSave() throws ServletException {
         User user = new User("username", "pass");
         userDao.save(user);
 
@@ -39,7 +39,7 @@ public class UserDaoTest {
     }
 
     @Test
-    public void testFindById() {
+    public void testFindById() throws ServletException {
         User user = new User("username1", "pass1");
         userDao.save(user);
         Long userId = user.getId();
@@ -54,7 +54,7 @@ public class UserDaoTest {
     }
 
     @Test
-    public void testFindByUsername() {
+    public void testFindByUsername() throws ServletException {
         String username = "username2";
         User user = new User(username, "pass1");
         userDao.save(user);
@@ -69,7 +69,7 @@ public class UserDaoTest {
     }
 
     @Test
-    public void testDelete() {
+    public void testDelete() throws ServletException {
         User user = new User("username3", "pass3");
         userDao.save(user);
         Long userId = user.getId();

@@ -9,6 +9,7 @@
         <class>project.coffeeshop.menu.MenuItem</class>
         <class>project.coffeeshop.menu.cart.Order</class>
         <class>project.coffeeshop.news.PieceOfNews</class>
+        <class>project.coffeeshop.menu.cart.UserCart</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/coffee_shop"/>

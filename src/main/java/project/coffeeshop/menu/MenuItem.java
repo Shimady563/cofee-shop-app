@@ -29,9 +29,6 @@ public class MenuItem {
     @Column(name = "image", nullable = false)
     private String image;
 
-    @ManyToMany(mappedBy = "favorites", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<User> users;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

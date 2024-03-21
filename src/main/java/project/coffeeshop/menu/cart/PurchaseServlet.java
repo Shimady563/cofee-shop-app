@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import project.coffeeshop.authentication.Session;
 import project.coffeeshop.authentication.SessionDao;
 import project.coffeeshop.authentication.User;
-import project.coffeeshop.authentication.UserDao;
 import project.coffeeshop.commons.CoffeeShopServlet;
 
 import java.io.IOException;
@@ -23,15 +22,12 @@ import static project.coffeeshop.commons.ServletUtil.findCookieByName;
 public class PurchaseServlet extends CoffeeShopServlet {
     private SessionDao sessionDao;
     private CartDao cartDao;
-    private UserDao userDao;
-    private OrderDao orderDao;
+    private final OrderDao orderDao = new OrderDao();
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         sessionDao = new SessionDao();
         cartDao = new CartDao();
-        userDao = new UserDao();
-        orderDao = new OrderDao();
         super.init(config);
     }
 
@@ -45,19 +41,15 @@ public class PurchaseServlet extends CoffeeShopServlet {
             Optional<Session> sessionOptional = sessionDao.findById(UUID.fromString(cookieOptional.get().getValue()));
 
             if (sessionOptional.isPresent()) {
-                Optional<User> userOptional = userDao.findById(sessionOptional.get().getUser().getId());
+                User user = sessionOptional.get().getUser();
+                Order order = new Order(LocalDateTime.now(), LocalDateTime.now().minusMinutes(10), overallPrice);
+                orderDao.save(order);
+                cartDao.deleteByUser(user);
 
-                if (userOptional.isPresent()) {
-                    User user = userOptional.get();
-
-                    Order order = new Order(LocalDateTime.now(), LocalDateTime.now().plusMinutes(10), overallPrice);
-                    orderDao.save(user.getId(), order);
-                    cartDao.deleteAll(user.getId());
-
-                    templateEngine.process("purchase", webContext, response.getWriter());
-                    return;
-                }
+                templateEngine.process("purchase", webContext, response.getWriter());
+                return;
             }
+
         }
 
         throw new ServletException("Couldn't create an order");
