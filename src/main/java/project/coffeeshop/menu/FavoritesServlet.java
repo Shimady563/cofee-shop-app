@@ -41,11 +41,16 @@ public class FavoritesServlet extends CoffeeShopServlet {
             Optional<Session> sessionOptional = sessionDao.findById(UUID.fromString(cookieOptional.get().getValue()));
 
             if (sessionOptional.isPresent()) {
-                User user = sessionOptional.get().getUser();
-                Hibernate.initialize(user.getFavorites());
-                webContext.setVariable("menuItems", user.getFavorites());
-                templateEngine.process("favorites", webContext, response.getWriter());
-                return;
+                Optional<User> userOptional = userDao.findById(sessionOptional.get().getUser().getId());
+
+                if (userOptional.isPresent()) {
+                    User user = userOptional.get();
+                    userDao.refresh(user);
+                    Hibernate.initialize(user.getFavorites());
+                    webContext.setVariable("menuItems", user.getFavorites());
+                    templateEngine.process("favorites", webContext, response.getWriter());
+                    return;
+                }
             }
         }
 
@@ -62,13 +67,18 @@ public class FavoritesServlet extends CoffeeShopServlet {
             Optional<Session> sessionOptional = sessionDao.findById(UUID.fromString(cookieOptional.get().getValue()));
 
             if (sessionOptional.isPresent()) {
-                User user = sessionOptional.get().getUser();
-                Hibernate.initialize(user.getFavorites());
-                Optional<MenuItem> menuItemOptional = menuDao.findById(menuItemId);
+                Optional<User> userOptional = userDao.findById(sessionOptional.get().getUser().getId());
 
-                if (menuItemOptional.isPresent()) {
-                    user.removeFromFavorites(menuItemOptional.get());
-                    userDao.update(user);
+                if (userOptional.isPresent()) {
+                    User user = userOptional.get();
+                    userDao.refresh(user);
+                    Hibernate.initialize(user.getFavorites());
+                    Optional<MenuItem> menuItemOptional = menuDao.findById(menuItemId);
+
+                    if (menuItemOptional.isPresent()) {
+                        user.removeFromFavorites(menuItemOptional.get());
+                        userDao.update(user);
+                    }
                 }
             }
         }

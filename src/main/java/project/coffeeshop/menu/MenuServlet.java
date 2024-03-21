@@ -53,17 +53,21 @@ public class MenuServlet extends CoffeeShopServlet {
             Optional<Session> sessionOptional = sessionDao.findById(UUID.fromString(cookieOptional.get().getValue()));
 
             if (sessionOptional.isPresent()) {
-                User user = sessionOptional.get().getUser();
-                Hibernate.initialize(user.getFavorites());
+                Optional<User> userOptional = userDao.findById(sessionOptional.get().getUser().getId());
 
-                Optional<MenuItem> menuItemOptional = menuDao.findById(menuItemId);
+                if (userOptional.isPresent()) {
+                    User user = userOptional.get();
+                    userDao.refresh(user);
+                    Hibernate.initialize(user.getFavorites());
 
-                if (menuItemOptional.isPresent()) {
-                    user.addToFavorites(menuItemOptional.get());
-                    System.out.println(user.getFavorites());
-                    userDao.update(user);
-                    webContext.setVariable("itemId", menuItemId);
-                    webContext.setVariable("message", "Added to favorites");
+                    Optional<MenuItem> menuItemOptional = menuDao.findById(menuItemId);
+
+                    if (menuItemOptional.isPresent()) {
+                        user.addToFavorites(menuItemOptional.get());
+                        userDao.update(user);
+                        webContext.setVariable("itemId", menuItemId);
+                        webContext.setVariable("message", "Added to favorites");
+                    }
                 }
             }
         }

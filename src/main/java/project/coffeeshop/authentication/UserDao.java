@@ -14,22 +14,8 @@ public class UserDao extends AbstractDao<User, Long> {
         return Optional.ofNullable(entityManager.find(User.class, userId));
     }
 
-    public void update(User user) throws ServletException {
-        EntityTransaction transaction = entityManager.getTransaction();
-        try {
-            transaction.begin();
-
-            entityManager.merge(user);
-            entityManager.flush();
-
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
-
-            throw new ServletException(e);
-        }
+    public void refresh(User user) {
+        entityManager.refresh(user);
     }
 
     public Optional<User> findByUsername(String username) {
