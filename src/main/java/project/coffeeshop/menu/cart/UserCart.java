@@ -14,13 +14,11 @@ import project.coffeeshop.menu.MenuItem;
 @Table(name = "user_cart")
 public class UserCart {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Id
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "menu_item_id")
     private MenuItem menuItem;

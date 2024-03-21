@@ -25,14 +25,15 @@ public class Order {
     @Column(name = "price", nullable = false)
     private double price;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Order(LocalDateTime creationTime, LocalDateTime readyTime, double price) {
+    public Order(LocalDateTime creationTime, LocalDateTime readyTime, double price, User user) {
         this.creationTime = creationTime;
         this.readyTime = readyTime;
         this.price = price;
+        this.user = user;
     }
 }
 

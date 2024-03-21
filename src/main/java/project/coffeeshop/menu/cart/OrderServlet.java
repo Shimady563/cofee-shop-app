@@ -45,10 +45,8 @@ public class OrderServlet extends CoffeeShopServlet {
 
                 if (userOptional.isPresent()) {
                     User user = userOptional.get();
-                    userDao.refresh(user);
-                    Hibernate.initialize(user.getOrders());
-                    System.out.println(user.getOrders());
-                    webContext.setVariable("orders", user.getOrders());
+
+                    webContext.setVariable("orders", orderDao.findByUser(user));
                     templateEngine.process("orders", webContext, response.getWriter());
                     return;
                 }
@@ -61,29 +59,12 @@ public class OrderServlet extends CoffeeShopServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long orderId = Long.parseLong(request.getParameter("orderId"));
-        Cookie[] cookies = request.getCookies();
-        Optional<Cookie> cookieOptional = findCookieByName(cookies, "sessionId");
+        Optional<Order> orderOptional = orderDao.findById(orderId);
 
-        if (cookieOptional.isPresent()) {
-            Optional<Session> sessionOptional = sessionDao.findById(UUID.fromString(cookieOptional.get().getValue()));
-
-            if (sessionOptional.isPresent()) {
-                Optional<User> userOptional = userDao.findById(sessionOptional.get().getUser().getId());
-
-                if (userOptional.isPresent()) {
-                    User user = userOptional.get();
-                    userDao.refresh(user);
-                    Hibernate.initialize(user.getOrders());
-                    Optional<Order> orderOptional = orderDao.findById(orderId);
-
-                    if (orderOptional.isPresent()) {
-                        user.removeOrder(orderOptional.get());
-                        userDao.update(user);
-                        response.sendRedirect(request.getContextPath() + "/orders");
-                        return;
-                    }
-                }
-            }
+        if (orderOptional.isPresent()) {
+            orderDao.delete(orderOptional.get());
+            response.sendRedirect(request.getContextPath() + "/orders");
+            return;
         }
 
         throw new ServletException("Failed to delete order");
