@@ -26,13 +26,7 @@ import static project.coffeeshop.commons.ServletUtil.*;
         "PurchaseServlet",
         "OrderServlet",})
 public class AuthorizationFilter extends HttpFilter {
-    private SessionDao sessionDao;
-
-    @Override
-    public void init(FilterConfig config) throws ServletException {
-        sessionDao = new SessionDao();
-        super.init(config);
-    }
+    private final SessionDao sessionDao = new SessionDao();
 
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException {

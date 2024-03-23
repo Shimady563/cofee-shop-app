@@ -16,13 +16,7 @@ import static project.coffeeshop.commons.ServletUtil.*;
 
 @WebFilter(filterName = "AuthFilter", servletNames = {"SignInServlet", "SignUpServlet"})
 public class AuthenticationFilter extends HttpFilter {
-    private SessionDao sessionDao;
-
-    @Override
-    public void init(FilterConfig config) throws ServletException {
-        sessionDao = new SessionDao();
-        super.init(config);
-    }
+    private final SessionDao sessionDao = new SessionDao();
 
     @Override
     public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException {

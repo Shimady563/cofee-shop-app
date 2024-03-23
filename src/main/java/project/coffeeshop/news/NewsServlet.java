@@ -12,13 +12,7 @@ import java.util.List;
 
 @WebServlet(name = "NewsServlet", value = "/news")
 public class NewsServlet extends CoffeeShopServlet {
-    private NewsDao newsDao;
-
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        newsDao = new NewsDao();
-        super.init(config);
-    }
+    private final NewsDao newsDao = new NewsDao();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

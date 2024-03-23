@@ -22,16 +22,9 @@ import static project.coffeeshop.commons.ServletUtil.findCookieByName;
 
 @WebServlet(name = "MenuServlet", value = "/menu")
 public class MenuServlet extends CoffeeShopServlet {
-    private MenuDao menuDao;
-    private SessionDao sessionDao;
+    private final MenuDao menuDao = new MenuDao();
+    private final SessionDao sessionDao = new SessionDao();
     private final UserDao userDao = new UserDao();
-
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        menuDao = new MenuDao();
-        sessionDao = new SessionDao();
-        super.init(config);
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

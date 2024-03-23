@@ -16,15 +16,8 @@ import java.util.UUID;
 
 @WebServlet(name = "SignUpServlet", value = "/sign-up")
 public class SignUpServlet extends CoffeeShopServlet {
-    private SessionDao sessionDao;
-    private UserDao userDao;
-
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        sessionDao = new SessionDao();
-        userDao = new UserDao();
-        super.init(config);
-    }
+    private final SessionDao sessionDao = new SessionDao();
+    private final UserDao userDao = new UserDao();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -23,16 +23,9 @@ import static project.coffeeshop.commons.ServletUtil.findCookieByName;
 
 @WebServlet(name = "CartServlet", value = "/cart")
 public class CartServlet extends CoffeeShopServlet {
-    private SessionDao sessionDao;
-    private CartDao cartDao;
+    private final SessionDao sessionDao = new SessionDao();
+    private final CartDao cartDao = new CartDao();
     private final MenuDao menuDao = new MenuDao();
-
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        sessionDao = new SessionDao();
-        cartDao = new CartDao();
-        super.init(config);
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

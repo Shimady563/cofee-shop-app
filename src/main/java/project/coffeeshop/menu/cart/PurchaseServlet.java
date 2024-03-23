@@ -20,16 +20,9 @@ import static project.coffeeshop.commons.ServletUtil.findCookieByName;
 
 @WebServlet(name = "PurchaseServlet", value = "/purchase")
 public class PurchaseServlet extends CoffeeShopServlet {
-    private SessionDao sessionDao;
-    private CartDao cartDao;
+    private final SessionDao sessionDao = new SessionDao();
+    private final CartDao cartDao = new CartDao();
     private final OrderDao orderDao = new OrderDao();
-
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        sessionDao = new SessionDao();
-        cartDao = new CartDao();
-        super.init(config);
-    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

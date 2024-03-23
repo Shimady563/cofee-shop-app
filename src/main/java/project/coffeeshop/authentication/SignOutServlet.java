@@ -16,13 +16,7 @@ import static project.coffeeshop.commons.ServletUtil.findCookieByName;
 
 @WebServlet(name = "SignOutServlet", value = "/sign-out")
 public class SignOutServlet extends CoffeeShopServlet {
-    private SessionDao sessionDao;
-
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        sessionDao = new SessionDao();
-        super.init(config);
-    }
+    private final SessionDao sessionDao = new SessionDao();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
