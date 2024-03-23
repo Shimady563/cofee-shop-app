@@ -43,7 +43,7 @@ public class PurchaseServlet extends CoffeeShopServlet {
             if (sessionOptional.isPresent()) {
                 User user = sessionOptional.get().getUser();
                 Order order = new Order(LocalDateTime.now(), LocalDateTime.now().plusMinutes(10), overallPrice, user);
-                orderDao.update(order);
+                orderDao.save(order);
                 cartDao.deleteByUser(user);
 
                 templateEngine.process("purchase", webContext, response.getWriter());

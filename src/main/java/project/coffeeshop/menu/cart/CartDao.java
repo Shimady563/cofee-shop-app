@@ -35,7 +35,7 @@ public class CartDao extends AbstractDao<UserCart, Long> {
                             "where user = :user")
                     .setParameter("user", user)
                     .executeUpdate();
-            entityManager.flush();
+            entityManager.clear();
 
             transaction.commit();
         } catch (Exception e) {
@@ -56,7 +56,7 @@ public class CartDao extends AbstractDao<UserCart, Long> {
                     .setParameter("user", user)
                     .setParameter("menuItem", menuItem)
                     .executeUpdate();
-            entityManager.flush();
+            entityManager.clear();
 
             transaction.commit();
         } catch (Exception e) {
