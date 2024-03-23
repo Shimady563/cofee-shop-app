@@ -23,7 +23,7 @@ public class SessionDao extends AbstractDao<Session, UUID> {
                             "where expirationTime < :time")
                     .setParameter("time", now)
                     .executeUpdate();
-            entityManager.flush();
+            entityManager.clear();
 
             transaction.commit();
         } catch (Exception e) {
