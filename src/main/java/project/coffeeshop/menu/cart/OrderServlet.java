@@ -63,10 +63,8 @@ public class OrderServlet extends CoffeeShopServlet {
 
         if (orderOptional.isPresent()) {
             orderDao.delete(orderOptional.get());
-            response.sendRedirect(request.getContextPath() + "/orders");
-            return;
         }
 
-        throw new ServletException("Failed to delete order");
+        response.sendRedirect(request.getContextPath() + "/orders");
     }
 }
