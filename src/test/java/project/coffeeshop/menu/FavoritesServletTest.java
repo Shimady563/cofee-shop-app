@@ -101,7 +101,7 @@ public class FavoritesServletTest {
     }
 
     @Test
-    public void doGet_Should_ThrowAnException_When_SessionNotFound() throws ServletException {
+    public void doGet_Should_ThrowAnException_When_SessionNotFound() {
         when(request.getCookies()).thenReturn(new Cookie[]{new Cookie("sessionId", UUID.randomUUID().toString())});
         when(sessionDao.findById(any())).thenReturn(Optional.empty());
 
@@ -133,7 +133,7 @@ public class FavoritesServletTest {
     }
 
     @Test
-    public void doPost_Should_ReloadThePageWithoutDeleting_When_CookieNotFound() throws ServletException, IOException, NoSuchFieldException, IllegalAccessException {
+    public void doPost_Should_ReloadThePageWithoutDeleting_When_CookieNotFound() throws ServletException {
         MenuItem menuItem = new MenuItem( "menuItem", 0.0, 0, "path");
         User user = new User();
         Session session = new Session(UUID.randomUUID(), LocalDateTime.MIN, user);
@@ -152,7 +152,7 @@ public class FavoritesServletTest {
     }
 
     @Test
-    public void doPost_Should_ReloadThePageWithoutDeleting_When_SessionNotFound() throws ServletException, IOException, NoSuchFieldException, IllegalAccessException {
+    public void doPost_Should_ReloadThePageWithoutDeleting_When_SessionNotFound() throws ServletException {
         MenuItem menuItem = new MenuItem( "menuItem", 0.0, 0, "path");
         User user = new User();
 

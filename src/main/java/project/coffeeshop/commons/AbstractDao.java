@@ -1,10 +1,8 @@
 package project.coffeeshop.commons;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.servlet.ServletException;
-import project.coffeeshop.menu.cart.UserCart;
 
 import java.util.Optional;
 

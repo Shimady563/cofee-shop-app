@@ -1,6 +1,5 @@
 package project.coffeeshop.news;
 
-import jakarta.persistence.EntityTransaction;
 import project.coffeeshop.commons.AbstractDao;
 
 import java.util.List;

@@ -11,14 +11,13 @@ import org.junit.jupiter.api.Test;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MenuDaoTest {
     private static EntityManager entityManager;
-    private MenuDao menuDao = new MenuDao();
+    private final MenuDao menuDao = new MenuDao();
 
     @BeforeAll
     public static void setUpEntityManager() {

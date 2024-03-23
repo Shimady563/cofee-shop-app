@@ -1,6 +1,5 @@
 package project.coffeeshop.menu.cart;
 
-import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
@@ -14,7 +13,6 @@ import project.coffeeshop.menu.MenuDao;
 import project.coffeeshop.menu.MenuItem;
 
 import java.io.IOException;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;

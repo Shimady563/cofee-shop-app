@@ -1,7 +1,6 @@
 package project.coffeeshop.authentication;
 
 import com.lambdaworks.crypto.SCryptUtil;
-import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;

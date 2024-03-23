@@ -29,7 +29,7 @@ public class AuthorizationFilter extends HttpFilter {
     private final SessionDao sessionDao = new SessionDao();
 
     @Override
-    protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException {
+    protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException {
         Cookie[] cookies = request.getCookies();
         Optional<Cookie> cookieOptional = findCookieByName(cookies, "sessionId");
 

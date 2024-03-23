@@ -1,7 +1,6 @@
 package project.coffeeshop.menu.cart;
 
 import jakarta.persistence.EntityTransaction;
-import jakarta.servlet.ServletException;
 import project.coffeeshop.authentication.User;
 import project.coffeeshop.commons.AbstractDao;
 import project.coffeeshop.menu.MenuItem;

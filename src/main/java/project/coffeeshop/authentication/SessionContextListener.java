@@ -12,15 +12,10 @@ public class SessionContextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-
-        try {
+        try (ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor()) {
             SessionDao sessionDao = new SessionDao();
             long interval = 6 * 60 * 60;
-
             service.scheduleWithFixedDelay(() -> sessionDao.deleteExpiredSessions(LocalDateTime.now()), interval, interval, TimeUnit.SECONDS);
-        } finally {
-            service.shutdown();
         }
     }
 }

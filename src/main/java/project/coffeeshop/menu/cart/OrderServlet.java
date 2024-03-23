@@ -1,12 +1,10 @@
 package project.coffeeshop.menu.cart;
 
-import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.hibernate.Hibernate;
 import project.coffeeshop.authentication.Session;
 import project.coffeeshop.authentication.SessionDao;
 import project.coffeeshop.authentication.User;
@@ -14,7 +12,6 @@ import project.coffeeshop.authentication.UserDao;
 import project.coffeeshop.commons.CoffeeShopServlet;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 

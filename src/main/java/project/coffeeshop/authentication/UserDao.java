@@ -1,8 +1,6 @@
 package project.coffeeshop.authentication;
 
-import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.NoResultException;
-import jakarta.servlet.ServletException;
 import project.coffeeshop.commons.AbstractDao;
 
 import java.util.Optional;

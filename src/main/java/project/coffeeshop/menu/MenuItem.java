@@ -3,10 +3,8 @@ package project.coffeeshop.menu;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import project.coffeeshop.authentication.User;
 
 import java.util.Objects;
-import java.util.Set;
 
 @NoArgsConstructor
 @Getter

@@ -3,13 +3,11 @@ package project.coffeeshop.menu.cart;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
 import jakarta.servlet.ServletException;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import project.coffeeshop.authentication.User;
 import project.coffeeshop.authentication.UserDao;
-import project.coffeeshop.menu.MenuItem;
 
 import java.lang.reflect.Field;
 import java.time.LocalDateTime;

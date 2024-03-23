@@ -14,7 +14,6 @@ import org.thymeleaf.context.WebContext;
 import project.coffeeshop.authentication.Session;
 import project.coffeeshop.authentication.SessionDao;
 import project.coffeeshop.authentication.User;
-import project.coffeeshop.authentication.UserDao;
 
 import java.io.IOException;
 import java.lang.reflect.Field;

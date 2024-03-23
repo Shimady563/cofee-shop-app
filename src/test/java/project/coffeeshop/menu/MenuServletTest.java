@@ -84,7 +84,7 @@ public class MenuServletTest {
     }
 
     @Test
-    public void doGet_Should_ThrowException_When_MenuItemListIsEmpty() throws ServletException {
+    public void doGet_Should_ThrowException_When_MenuItemListIsEmpty() {
         when(menuDao.findAll()).thenReturn(List.of());
 
         assertThrows(ServletException.class, () -> menuServlet.doGet(request, response));
@@ -115,7 +115,7 @@ public class MenuServletTest {
     }
 
     @Test
-    public void doPost_Should_ReloadThePageWithoutSaving_When_CookieNotFound() throws ServletException, IOException {
+    public void doPost_Should_ReloadThePageWithoutSaving_When_CookieNotFound() throws ServletException {
         User user = new User();
         Session session = new Session(UUID.randomUUID(), LocalDateTime.MAX, user);
 
@@ -132,7 +132,7 @@ public class MenuServletTest {
     }
 
     @Test
-    public void doPost_Should_ReloadThePageWithoutSaving_When_SessionNotFound() throws ServletException, IOException {
+    public void doPost_Should_ReloadThePageWithoutSaving_When_SessionNotFound() throws ServletException {
         User user = new User();
 
         when(request.getParameter("menuItemId")).thenReturn("1");
