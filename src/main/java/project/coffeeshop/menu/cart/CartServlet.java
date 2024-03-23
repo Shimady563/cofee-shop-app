@@ -100,7 +100,6 @@ public class CartServlet extends CoffeeShopServlet {
                         case "increase" -> {
                             int newQuantity = Integer.parseInt(request.getParameter("oldQuantity")) + 1;
                             userCart.setQuantity(newQuantity);
-                            System.out.println(1);
                             cartDao.update(userCart);
                         }
 
