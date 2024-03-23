@@ -26,8 +26,9 @@ Reading the news about the coffee shop and coffee related topics.
 
 ## Future plans
 
-Now I'm working on porting data model to hibernate,
-which you can see in the branch `feature/hibernate`.
+There are 2 major branches in the repository:
+main branch is version of application that uses JDBC for data access;
+feature/hibernate branch is version of application that uses Hibernate for data access.
 Although the application is fully functional, 
 there are some additional quality of life changes
 that can be made. They include code refactoring, and some optimization.
@@ -43,7 +44,7 @@ You can find the application in my repository [here](https://github.com/Shimady5
 
 For application logic I use Java Servlets.
 
-For data access I use JDBC and Postgres.
+For data access I use JDBC (Hibernate) and Postgres.
 
 For interface I use Bootstrap and Thymeleaf
 
