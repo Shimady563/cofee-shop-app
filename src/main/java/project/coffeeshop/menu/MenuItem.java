@@ -41,4 +41,11 @@ public class MenuItem {
     public int hashCode() {
         return Objects.hash(id, name, price, volume, image);
     }
+
+    public MenuItem(String name, double price, int volume, String image) {
+        this.name = name;
+        this.price = price;
+        this.volume = volume;
+        this.image = image;
+    }
 }
