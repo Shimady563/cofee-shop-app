@@ -3,6 +3,7 @@ package project.coffeeshop.menu.cart;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
 import jakarta.servlet.ServletException;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,6 +53,8 @@ public class OrderDaoTest {
         Optional<Order> optionalOrder = orderDao.findById(order.getId());
 
         assertTrue(optionalOrder.isPresent());
+
+        orderDao.delete(order);
     }
 
     @Test
@@ -63,6 +66,8 @@ public class OrderDaoTest {
 
         assertTrue(optionalOrder.isPresent());
         assertEquals(order.getId(), optionalOrder.get().getId());
+
+        orderDao.delete(order);
     }
 
     @Test
