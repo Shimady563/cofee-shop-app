@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -76,10 +77,13 @@ public class SessionDaoTest {
 
     @Test
     public void testDeleteExpired() throws ServletException {
+        User user1 = new User("u1", "p1");
+        userDao.save(user1);
+
         UUID id1 = UUID.randomUUID();
         UUID id2 = UUID.randomUUID();
         Session session1 = new Session(id1, LocalDateTime.now(), user);
-        Session session2 = new Session(id1, LocalDateTime.now(), user);
+        Session session2 = new Session(id2, LocalDateTime.now(), user1);
         sessionDao.save(session1);
         sessionDao.save(session2);
 
