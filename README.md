@@ -35,12 +35,8 @@ there are some additional quality of life changes
 that can be made. They include code refactoring, and some optimization.
 I also plan to wrap the application in a docker container,
 and implement a CI/CD pipeline in the future,
-as will learn those technologies.
+as I will learn those technologies.
 
-Additionally, I plan to port this application to spring,
-to compare the two approaches.
-This will also allow me to learn more about spring.
-You can find the application in my repository [here](https://github.com/Shimady563/coffee-shop-app-spring)
 
 ## Technologies used
 
